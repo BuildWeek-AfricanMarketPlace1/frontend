@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function EditLocations({ product }) {
+function EditLocations() {
     return (
         <div>
-            <h2>{product.name}</h2>
+            {/* <h2>{product.name}</h2> */}
             
         </div>
     )

@@ -1,31 +1,48 @@
-import axiosWithAuth from "../../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-// ACTION TYPES
-export const FETCH_INVENTORY = "FETCH_INVENTORY";
-export const UPDATE_LOCATION = "UPDATE_LOCATION";
-export const ADD_LOCATION = "ADD_LOCATION";
-export const DELETE_LOCATION = "DELETE_LOCATION";
 
-// ACTION CREATORS
-export const fetchInventory = () => {
+export const ADD_ITEM = "ADD_ITEM";
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const EDIT_NAME = "EDIT_NAME";
+export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
+export const DELETE_ITEM = "DELETE_ITEM";
+
+//Add Item Action
+//Erica to insert code here
+export const addItem = () => {
   return (dispatch) => {
-    dispatch({ type: FETCH_INVENTORY});
-    // axios
-    //   .get("")
-    //   .then((response) => {
-    //     dispatch({ type: FETCH_INVENTORY, payload: response.data.data });
-    //   })
-    //   .catch((error) => {
-    //     dispatch({
-    //       type: FETCH_INVENTORY,
-    //       payload: { message: "Unable to load products." }
-    //     });
-    //   });
+    dispatch({ type: ADD_ITEM });
   };
 };
 
-export const updateLocation = () => {
+//Add Item Category Action
+//Mary to insert code here
+export const addCategory = () => {
   return (dispatch) => {
-    dispatch({ type: UPDATE_LOCATION})
-  }
-}
+    dispatch({ type: ADD_CATEGORY });
+  };
+};
+
+//Update Name Action
+//Erica to insert code here
+export const editName = () => {
+  return (dispatch) => {
+    dispatch({ type: EDIT_NAME });
+  };
+};
+
+//Update Description Action
+//Mary to insert code here
+export const editDescription = () => {
+  return (dispatch) => {
+    dispatch({ type: EDIT_DESCRIPTION });
+  };
+};
+
+//Delete Item Action
+//Mary & Erica to pair program
+export const deleteItem = () => {
+  return (dispatch) => {
+    dispatch({ type: DELETE_ITEM });
+  };
+};
