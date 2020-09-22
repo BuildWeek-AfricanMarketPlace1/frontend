@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import InventoryPage from "./components/InventoryPage";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header className="App-header">
       <h1>African Marketplace</h1>
       </header>
+      <InventoryPage />
     </div>
   );
 }
