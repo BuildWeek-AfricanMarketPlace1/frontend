@@ -36,10 +36,7 @@ export const editDescription = () => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
-      .put(
-        `https://african-market712.herokuapp.com/api/items${id}`,
-        updatedData
-      )
+      .put(`/api/items${id}`, updatedData)
       .then((res) => {
         console.log(res);
       })
