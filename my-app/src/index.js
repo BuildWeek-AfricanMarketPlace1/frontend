@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore } from "redux";
 import reducer from "./store/reducers";
 import { applyMiddleware, createStore } from "redux";
 import logger from "redux-logger";

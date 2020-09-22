@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import InventoryItem from "./InventoryItem";
 
-const InventoryList = ({ inventory }) => {
+const InventoryList = () => {
     // useEffect(()=>{
     //     axiosWithAuth()
     //     .get('/api/')
@@ -15,11 +15,11 @@ const InventoryList = ({ inventory }) => {
     // }, [])
   return (
     <div>
-      {inventory.map((product) => (
+      {/* {inventory.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <InventoryItem product={product} />
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 };

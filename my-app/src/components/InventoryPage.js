@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import InventoryList from "./InventoryList";
-import AddLocation from "./AddLocation";
-import EditLocations from "./EditLocations";
+import AddProduct from "./AddProduct";
+import EditName from "./EditName";
 import { connect } from "react-redux";
-import { fetchInventory } from "../store/actions/actions";
 
-const InventoryPage = ({inventory, fetchInventory}) => {
+
+const InventoryPage = () => {
 
     // useEffect(() => {
     //     fetchInventory();
@@ -16,26 +16,26 @@ const InventoryPage = ({inventory, fetchInventory}) => {
   return (
     <>
       <Route exact path="/inventory">
-        <InventoryList inventory={inventory} />
+        <InventoryList  />
       </Route>
 
-      <Route path="/location-editor/:id">
-        <EditLocations inventory={inventory} />
+      <Route path="/name-editor/:id">
+        <EditName  />
       </Route>
 
-      <Route path="/add-location/:id">
-        <AddLocation />
+      <Route path="/add-product/:id">
+        <AddProduct />
       </Route>
     </>
   );
 };
 
-function mapStateToProps(state) {
-    return {
-      inventory: state.inventory,
-      loadingInventory: state.loadingInventory,
-      errorMessage: state.errorMessage,
-    };
-  }
+// function mapStateToProps(state) {
+//     return {
+//       inventory: state.inventory,
+//       loadingInventory: state.loadingInventory,
+//       errorMessage: state.errorMessage,
+//     };
+//   }
   
-  export default connect(mapStateToProps, { fetchInventory })(InventoryPage);
+  export default InventoryPage;

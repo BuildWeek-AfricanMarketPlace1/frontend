@@ -1,7 +1,8 @@
 export {
-    FETCH_INVENTORY,
-    UPDATE_LOCATION,
-    ADD_LOCATION,
-    DELETE_LOCATION,
-    fetchInventory
-  } from "./actions";
+  //Erica to add her edit name actions here
+  ADD_ITEM,
+  ADD_CATEGORY,
+  EDIT_NAME,
+  EDIT_DESCRIPTION,
+  DELETE_ITEM,
+} from "./Actions";
