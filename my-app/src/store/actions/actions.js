@@ -35,19 +35,17 @@ export const editName = () => {
 export const editDescription = () => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
-    putDescription = (description) => {
-      axiosWithAuth()
-        .put(
-          `https://african-market712.herokuapp.com/api/items${id}`,
-          updatedData
-        )
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+    axiosWithAuth()
+      .put(
+        `https://african-market712.herokuapp.com/api/items${id}`,
+        updatedData
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
@@ -56,15 +54,13 @@ export const editDescription = () => {
 export const deleteItem = () => {
   return (dispatch) => {
     dispatch({ type: DELETE_ITEM });
-    removeItem = () => {
-      // axiosWithAuth()
-      // .delete(`https://african-market712.herokuapp.com/api/items${id}`)
-      //    .then(response => {
-      //      console.log(response)
-      //    })
-      //    .catch(err => {
-      //      console.log(err)
-      //    });
-    };
+    // axiosWithAuth()
+    // .delete(`https://african-market712.herokuapp.com/api/items${id}`)
+    //    .then(response => {
+    //      console.log(response)
+    //    })
+    //    .catch(err => {
+    //      console.log(err)
+    //    });
   };
 };
