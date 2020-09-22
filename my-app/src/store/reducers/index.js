@@ -19,11 +19,17 @@ export default function reducer(state = initialState, action) {
     case ADD_ITEM:
       return {};
     case ADD_CATEGORY:
-      return {};
+      return {
+        ...state,
+        categories: [...state.categories, action.payload],
+      };
     case EDIT_NAME:
       return {};
     case EDIT_DESCRIPTION:
-      return {};
+      return {
+        ...state,
+        description: [...state.description, action.payload],
+      };
     case DELETE_ITEM:
       return {};
     default:
