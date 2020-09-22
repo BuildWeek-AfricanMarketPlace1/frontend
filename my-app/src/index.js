@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createStore } from "redux";
+import reducer from "./store/reducers";
 import { applyMiddleware, createStore } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import reducer from "./reducers/index";
 import App from "./App";
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
@@ -13,7 +16,9 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   rootElement
