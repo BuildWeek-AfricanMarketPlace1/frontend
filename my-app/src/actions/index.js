@@ -1,6 +1,8 @@
 export {
   //Erica to add her edit name actions here
-  ADD_DESCRIPTION,
+  ADD_ITEM,
+  ADD_CATEGORY,
+  EDIT_NAME,
   EDIT_DESCRIPTION,
-  DELETE_DESCRIPTION,
+  DELETE_ITEM,
 } from "./Actions";
