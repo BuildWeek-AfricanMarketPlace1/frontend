@@ -8,9 +8,9 @@ import { fetchInventory } from "../store/actions/actions";
 
 const InventoryPage = ({inventory, fetchInventory}) => {
 
-    useEffect(() => {
-        fetchInventory();
-      }, [fetchInventory]);
+    // useEffect(() => {
+    //     fetchInventory();
+    //   }, [fetchInventory]);
 
 
   return (
