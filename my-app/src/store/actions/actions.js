@@ -1,6 +1,5 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-
 export const ADD_ITEM = "ADD_ITEM";
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const EDIT_NAME = "EDIT_NAME";
@@ -36,6 +35,19 @@ export const editName = () => {
 export const editDescription = () => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
+    putDescription = (description) => {
+      axiosWithAuth()
+        .put(
+          `https://african-market712.herokuapp.com/api/items${id}`,
+          updatedData
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
   };
 };
 
