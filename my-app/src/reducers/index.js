@@ -1,6 +1,6 @@
-import { ADD_CATEGORY } from "../actions";
-import { EDIT_CATEGORY } from "../actions";
-import { DELETE_CATEGORY } from "../actions";
+import { ADD_DESCRIPTION } from "../actions";
+import { EDIT_DESCRIPTION } from "../actions";
+import { DELETE_DESCRIPTION } from "../actions";
 
 const initialState = {
   category: "",
@@ -9,11 +9,11 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_CATEGORY:
+    case ADD_DESCRIPTION:
       return {};
-    case EDIT_CATEGORY:
+    case EDIT_DESCRIPTION:
       return {};
-    case DELETE_CATEGORY:
+    case DELETE_DESCRIPTION:
       return {};
     default:
       return state;

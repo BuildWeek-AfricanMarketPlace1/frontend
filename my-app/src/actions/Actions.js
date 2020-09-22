@@ -1,20 +1,21 @@
-//Edit Location Actions
+//Edit Name Actions
+//Erica to import her action code here
 
-//Edit Category Actions
-export const addCategory = () => {
+//Edit Description Actions
+export const addDescription = () => {
   return (dispatch) => {
-    dispatch({ type: ADD_CATEGORY });
+    dispatch({ type: ADD_DESCRIPTION });
   };
 };
 
-export const editCategory = () => {
+export const editDescription = () => {
   return (dispatch) => {
-    dispatch({ type: EDIT_CATEGORY });
+    dispatch({ type: EDIT_DESCRIPTION });
   };
 };
 
-export const deleteCategory = () => {
+export const deleteDescription = () => {
   return (dispatch) => {
-    dispatch({ type: DELETE_CATEGORY });
+    dispatch({ type: DELETE_DESCRIPTION });
   };
 };
