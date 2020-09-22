@@ -19,6 +19,14 @@ export const addItem = () => {
 export const addCategory = () => {
   return (dispatch) => {
     dispatch({ type: ADD_CATEGORY });
+    axiosWithAuth()
+      .post(`/api/items${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
@@ -52,7 +60,7 @@ export const deleteItem = () => {
   return (dispatch) => {
     dispatch({ type: DELETE_ITEM });
     // axiosWithAuth()
-    // .delete(`https://african-market712.herokuapp.com/api/items${id}`)
+    // .delete(`/api/items${id}`)
     //    .then(response => {
     //      console.log(response)
     //    })
