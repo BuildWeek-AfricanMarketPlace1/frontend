@@ -5,8 +5,13 @@ import { EDIT_DESCRIPTION } from "../actions";
 import { DELETE_ITEM } from "../actions";
 
 const initialState = {
-  category: "",
-  location: "",
+  id: 0,
+  user_id: 0,
+  locname: "",
+  catname: "",
+  name: "",
+  description: "",
+  price: 0,
 };
 
 export default function reducer(state = initialState, action) {
