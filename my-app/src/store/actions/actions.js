@@ -56,5 +56,13 @@ export const editDescription = () => {
 export const deleteItem = () => {
   return (dispatch) => {
     dispatch({ type: DELETE_ITEM });
+    // axiosWithAuth()
+    // .delete(`https://african-market712.herokuapp.com/api/items${id}`)
+    //    .then(response => {
+    //      console.log(response)
+    //    })
+    //    .catch(err => {
+    //      console.log(err)
+    //    });
   };
 };
