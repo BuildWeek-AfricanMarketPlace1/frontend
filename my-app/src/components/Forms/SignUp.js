@@ -1,11 +1,11 @@
+
+import './Login.css'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import schema from './validate-signup'
-import axios from 'axios';
 import { useHistory } from 'react-router-dom'
-
-import {
-  BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const intitialformvalues = {
   // strings
@@ -29,17 +29,17 @@ export default function RegistryForm(props) {
 
   const addNewUser = newuser => {
     
-    axios.post('https://african-market712.herokuapp.com/api/auth/register', newuser)
-      .then(res => {
-        localStorage.setItem('token', res.data)
-        history.push('/')
-        setUsers(res.data)
-        setFormValues(intitialformvalues)
-        console.log(Users)
+    event.preventDefault();
+    axiosWithAuth()
+      .post("api/auth/register", newuser)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.payload);
+        history.push("/dashboard");
       })
-      .catch(err => {
-
-      })
+      .catch((error) => {
+        alert("Register failed.");
+      });
       .finally(() => {
 
       })
@@ -51,22 +51,6 @@ export default function RegistryForm(props) {
   const validate = (email, value) => {
     yup
       .reach(schema, email)
-
-      .validate(value)
-
-      .then(valid => {
-        setFormErrors({
-          ...formErrors,
-          [email]: "",
-        })
-      })
-      .catch(err => {
-        setFormErrors({
-          ...formErrors,
-          [email]: err.errors[0]
-        });
-      });
-  }
 
   const inputChange = (email, value) => {
     validate(email, value)
