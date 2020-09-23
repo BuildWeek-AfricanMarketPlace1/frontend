@@ -30,10 +30,10 @@ function App() {
       <Route path="/signup">
         <SignUp />
       </Route>
-      <PrivateRoute exact path="/dashboard/">
+      <PrivateRoute exact path="/dashboard">
         <Dashboard />
       </PrivateRoute>
-      <PrivateRoute exact path="/inventory/">
+      <PrivateRoute exact path="/inventory">
         <InventoryList />
       </PrivateRoute>
       <PrivateRoute exact path="/product/:id">
@@ -44,6 +44,9 @@ function App() {
       </PrivateRoute>
       <PrivateRoute exact path="/name-editor/:id">
         <EditName />
+      </PrivateRoute>
+      <PrivateRoute exact path="/add-category">
+        <AddCategory />
       </PrivateRoute>
     </div>
   );

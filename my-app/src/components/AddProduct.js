@@ -17,9 +17,7 @@ function AddProduct({ inventory, addItem }) {
   const history = useHistory();
 
   const handleSubmit = (event) => {
-    useEffect(() => {
-      addItem();
-    }, [addItem]);
+    addItem(newItem);
   };
 
   const handleChanges = (event) => {
@@ -68,6 +66,21 @@ function AddProduct({ inventory, addItem }) {
             <option value="Fruits">Fruits</option>
             <option value="Vegetables">Vegetables</option>
           </select>
+        </label>
+        <Link exact to="/add-category">
+          <span>
+            <button>Add Category</button>
+          </span>
+        </Link>
+        <br></br>
+        <label>
+          Description:
+          <input
+            type="text"
+            name="description"
+            value={newItem.description}
+            onChange={handleChanges}
+          />
         </label>
         <br></br>
         <label>
