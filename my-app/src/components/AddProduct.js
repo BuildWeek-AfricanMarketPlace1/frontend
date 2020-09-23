@@ -16,9 +16,11 @@ function AddProduct({ inventory, addItem }) {
   const [newItem, setNewItem] = useState(initialFormValues);
   const history = useHistory();
 
-  useEffect(() => {
-    addItem();
-  }, [addItem]);
+  const handleSubmit = (event) => {
+    useEffect(() => {
+      addItem();
+    }, [addItem]);
+  };
 
   const handleChanges = (event) => {
     setNewItem({
@@ -30,7 +32,7 @@ function AddProduct({ inventory, addItem }) {
   return (
     <div>
       <h2>Add a new Product</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <br></br>
         <label>
           Product name:

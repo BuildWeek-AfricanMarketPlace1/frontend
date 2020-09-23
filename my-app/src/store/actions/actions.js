@@ -9,8 +9,9 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 
 //Get Entire Inventory List
-export const fetchInventory = (userId) => {
+export const fetchInventory = () => {
   return (dispatch) => {
+    const userId = localStorage.getItem("id");
     axiosWithAuth()
       .get(`api/items/user/${userId}`)
       .then((response) => {
@@ -23,6 +24,7 @@ export const fetchInventory = (userId) => {
 //Erica to insert code here
 export const addItem = (newProduct, userId) => {
   return (dispatch) => {
+    const userId = localStorage.getItem("id");
     axiosWithAuth()
       .post(`api/items/user/${userId}`, newProduct)
       .then((response) => {
