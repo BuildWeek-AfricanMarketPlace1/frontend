@@ -5,6 +5,7 @@ export const ADD_CATEGORY = "ADD_CATEGORY";
 export const EDIT_NAME = "EDIT_NAME";
 export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 
 //Add Item Action
 //Erica to insert code here
@@ -14,13 +15,29 @@ export const addItem = () => {
   };
 };
 
+//Get Item Categories
+//Mary to insert code here
+export const fetchCategories = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_CATEGORIES });
+    axiosWithAuth()
+      .get("/api/categories")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 //Add Item Category Action
 //Mary to insert code here
 export const addCategory = () => {
   return (dispatch) => {
     dispatch({ type: ADD_CATEGORY });
     axiosWithAuth()
-      .post(`/api/items${id}`)
+      .post(`/api/categories/${id}`)
       .then((res) => {
         console.log(res);
       })

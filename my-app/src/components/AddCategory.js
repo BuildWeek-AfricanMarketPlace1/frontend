@@ -1,18 +1,41 @@
 import React from "react";
+import { connect } from "react-redux";
+import { ADD_CATEGORY } from "../store/actions";
 
 function AddCategory(product) {
-  return;
-  <div>
-    <h2>Add a New Product Category</h2>
-    <input
-      type="text"
-      placeholder="Enter your new category"
-      value={}
-      onChange={}
-    />
-    <h3>Categories:</h3>
-    <h4>{product.catname}</h4>
-  </div>;
+  state = {
+    newCategory: "",
+  };
+
+  handleChanges = (e) => {
+    setState({ newCategory: e.target.value });
+  };
+
+  handleCategorySubmit = (e) => {
+    e.preventDefault();
+    props.ADD_CATEGORY({ name: state.newCategory });
+  };
+
+  return (
+    <>
+      <div>
+        {props.categories.map((category, id) => (
+          <h4 key={id}>{catname}</h4>
+        ))}
+      </div>
+      <form onSubmit={handleCategorySubmit}>
+        <input
+          type="text"
+          value={state.newCategory}
+          onChange={handleChanges}
+          placeholder="Add new category"
+        />
+        <button>Add Category</button>
+      </form>
+    </>
+  );
 }
 
-export default AddCategory;
+export default connect(mapStateToProps, { FETCH_CATEGORIES, ADD_CATEGORY })(
+  AddCategory
+);

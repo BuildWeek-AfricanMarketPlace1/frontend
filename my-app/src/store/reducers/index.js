@@ -1,4 +1,4 @@
-import { ADD_ITEM } from "../actions";
+import { ADD_ITEM, FETCH_CATEGORIES } from "../actions";
 import { ADD_CATEGORY } from "../actions";
 import { EDIT_NAME } from "../actions";
 import { EDIT_DESCRIPTION } from "../actions";
@@ -21,7 +21,12 @@ export default function reducer(state = initialState, action) {
     case ADD_CATEGORY:
       return {
         ...state,
-        categories: [...state.categories, action.payload],
+        categories: [...state.catname, action.payload],
+      };
+    case FETCH_CATEGORIES:
+      return {
+        ...state,
+        categories: [...state.catname, action.payload],
       };
     case EDIT_NAME:
       return {};
