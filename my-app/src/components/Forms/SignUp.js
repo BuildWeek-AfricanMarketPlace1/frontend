@@ -21,7 +21,7 @@ const initialFormErrors = {
 }
 
 export default function RegistryForm(props) {
-  const [Users, setUsers] = useState({});
+  const [users, setUsers] = useState();
   const [formValues, setFormValues] = useState(intitialformvalues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
@@ -31,19 +31,18 @@ export default function RegistryForm(props) {
     
     axios.post('https://african-market712.herokuapp.com/api/auth/register', newuser)
       .then(res => {
-        localStorage.setItem('token', res.data)
-        history.push('/')
+        localStorage.setItem('token', res.data.token)
         setUsers(res.data)
         setFormValues(intitialformvalues)
-        console.log(Users)
+        history.push('/login')
+        
       })
       .catch(err => {
 
       })
       .finally(() => {
-
       })
-    console.log(newuser);
+    
     setFormValues(intitialformvalues)
 
   }
@@ -80,6 +79,7 @@ export default function RegistryForm(props) {
     const newuser = {
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+
     }
     addNewUser(newuser)
   }
