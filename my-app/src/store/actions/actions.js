@@ -50,7 +50,7 @@ export const fetchItemCategories = () => {
 
 //Add Item Category Action
 //Mary to insert code here
-export const addItemCategory = (newCategory) => {
+export const addCategory = (newCategory) => {
   return (dispatch) => {
     axiosWithAuth()
       .post(`api/categories`, newCategory)
@@ -77,7 +77,7 @@ export const editName = (product, productId) => {
 
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = (product, productId) => {
+export const editDescription = (product, productId) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()

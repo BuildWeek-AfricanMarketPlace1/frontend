@@ -10,6 +10,7 @@ import AddProduct from "./components/AddProduct";
 import EditName from "./components/EditName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
+import AddCategory from "./components/AddCategory";
 
 function App() {
   return (
