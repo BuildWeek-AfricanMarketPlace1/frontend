@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import './Login.css'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useHistory } from "react-router-dom";
 
 
 function SignUp() {
@@ -12,17 +14,24 @@ function SignUp() {
     confirmPassword: ""
    });
 
+   const history = useHistory();
+
   const handleChange = event => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(user.firstName);
-    console.log(user.lastName);
-    console.log(user.email);
-    console.log(user.password);
-    console.log(user.confirmPassword);
+    axiosWithAuth()
+      .post("api/auth/register", user)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.payload);
+        history.push("/dashboard");
+      })
+      .catch((error) => {
+        alert("Register failed.");
+      });
   };
 
   return (

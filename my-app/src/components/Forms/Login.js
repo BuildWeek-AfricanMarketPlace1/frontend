@@ -1,6 +1,8 @@
 import React from "react";
 import * as yup from "yup";
 import schema from "./validate-login.js";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 const initialFormErrors = {
   email: "",
@@ -12,13 +14,20 @@ export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSubmit = (event) => {
-    console.log(`
-    Email: ${email}
-    Password: ${password}
-    `);
+  const history = useHistory();
 
+  const handleSubmit = (event) => {
     event.preventDefault();
+    axiosWithAuth()
+      .post("api/auth/login", email, password)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.payload);
+        history.push("/dashboard");
+      })
+      .catch((error) => {
+        alert("Login failed.");
+      });
   };
 
   // Validation - TLTsay
