@@ -1,6 +1,6 @@
 # frontend
 
-Devolopers:
+Developers:
 
 React 1:
 - Rod Hentringer
