@@ -1,6 +1,5 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-
 export const FETCH_INVENTORY = "FETCH_INVENTORY";
 export const ADD_ITEM = "ADD_ITEM";
 export const ADD_CATEGORY = "ADD_CATEGORY";
@@ -13,22 +12,22 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const fetchInventory = (userId) => {
   return (dispatch) => {
     axiosWithAuth()
-    .get(`api/items/user/${userId}`)
-    .then((response) => {
-      dispatch({ type: FETCH_INVENTORY, payload: response.data});
-    })
-  }
-}
+      .get(`api/items/user/${userId}`)
+      .then((response) => {
+        dispatch({ type: FETCH_INVENTORY, payload: response.data });
+      });
+  };
+};
 
 //Add Item Action
 //Erica to insert code here
 export const addItem = (newProduct, userId) => {
   return (dispatch) => {
     axiosWithAuth()
-    .post(`api/items/user/${userId}`, newProduct)
-    .then((response) => {
-      dispatch({ type: ADD_ITEM, payload: response.data})
-    })
+      .post(`api/items/user/${userId}`, newProduct)
+      .then((response) => {
+        dispatch({ type: ADD_ITEM, payload: response.data });
+      });
   };
 };
 
@@ -67,16 +66,16 @@ export const addItemCategory = (newCategory) => {
 export const editName = (product, productId) => {
   return (dispatch) => {
     axiosWithAuth()
-    .put(`api/items/${productId}`, product)
-    .then((response) => {
-      dispatch({ type: EDIT_NAME, payload: response.data});
-    })
+      .put(`api/items/${productId}`, product)
+      .then((response) => {
+        dispatch({ type: EDIT_NAME, payload: response.data });
+      });
   };
 };
 
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = (product) => {
+export const editItemDescription = (product, productId) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
