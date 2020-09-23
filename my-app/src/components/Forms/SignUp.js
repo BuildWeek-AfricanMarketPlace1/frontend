@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import * as yup from 'yup';
-import schema from './validate-signup'
-import axios from 'axios';
-import { useHistory } from 'react-router-dom'
-
-import {
-  BrowserRouter as Router, Link } from "react-router-dom";
+import "./Login.css";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
+import schema from "./validate-signup";
+import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const intitialformvalues = {
   // strings
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   // check box
   terms: false,
-}
+};
 const initialFormErrors = {
-  email: '',
-  password: '',
-  terms: '',
-}
+  email: "",
+  password: "",
+  terms: "",
+};
 
 export default function RegistryForm(props) {
   const [users, setUsers] = useState();
@@ -27,18 +26,16 @@ export default function RegistryForm(props) {
   const [disabled, setDisabled] = useState(true);
   const history = useHistory();
 
-  const addNewUser = newuser => {
-    
-    axios.post('https://african-market712.herokuapp.com/api/auth/register', newuser)
-      .then(res => {
-        localStorage.setItem('token', res.data.token)
-        setUsers(res.data)
-        setFormValues(intitialformvalues)
-        history.push('/login')
-        
+  const addNewUser = (newuser) => {
+    axiosWithAuth()
+      .post("api/auth/register", newuser)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.payload);
+        history.push("/dashboard");
       })
-      .catch(err => {
-
+      .catch((error) => {
+        alert("Register failed.");
       })
       .finally(() => {
       })
@@ -53,27 +50,27 @@ export default function RegistryForm(props) {
 
       .validate(value)
 
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
           [email]: "",
-        })
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         setFormErrors({
           ...formErrors,
-          [email]: err.errors[0]
+          [email]: err.errors[0],
         });
       });
-  }
+  };
 
   const inputChange = (email, value) => {
-    validate(email, value)
+    validate(email, value);
     setFormValues({
       ...formValues,
-      [email]: value
-    })
-  }
+      [email]: value,
+    });
+  };
 
   const formSubmit = () => {
     const newuser = {
@@ -83,62 +80,71 @@ export default function RegistryForm(props) {
     }
     addNewUser(newuser)
   }
-  useEffect(() => {
-    schema.isValid(formValues)
-      .then(valid => {
-        setDisabled(!valid)
-      })
-  }, [formValues])
 
-  const Submit = evt => {
-    evt.preventDefault()
-    formSubmit()
-  }
-  const onChange = evt => {
-    const { name, value, type, checked } = evt.target
-    const valueToUse = type === 'checkbox' ? checked : value
-    inputChange(name, valueToUse)
-  }
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
+
+  const Submit = (evt) => {
+    evt.preventDefault();
+    formSubmit();
+  };
+  const onChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    inputChange(name, valueToUse);
+  };
   return (
     <div>
-      <Link to='/Login'>Already have an account?</Link>
-      <form className='registryform' onSubmit={Submit}>
+      <Link to="/Login">Already have an account?</Link>
+      <form className="registryform" onSubmit={Submit}>
         <h2>Register</h2>
-        <div className='inputs'>
-          <label>Email:{<br></br>}
+        <div className="inputs">
+          <label>
+            Email:{<br></br>}
             <input
               value={formValues.email}
               onChange={onChange}
-              name='email'
-              type='text'
+              name="email"
+              type="text"
             />
-          </label>{<br></br>}
-          <label>Password:{<br></br>}
+          </label>
+          {<br></br>}
+          <label>
+            Password:{<br></br>}
             <input
               value={formValues.password}
               onChange={onChange}
-              name='password'
-              type='text' />
-          </label>{<br></br>}
+              name="password"
+              type="text"
+            />
+          </label>
+          {<br></br>}
 
-          <label> I agree to the Terms and conditions
-          <input
+          <label>
+            {" "}
+            I agree to the Terms and conditions
+            <input
               type="checkbox"
-              name='terms'
+              name="terms"
               checked={formValues.terms}
               onChange={onChange}
             />
           </label>
         </div>
-        <div className='submitarea'>
-          <div className='errors'>
+        <div className="submitarea">
+          <div className="errors">
             <div>{formErrors.email}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.terms}</div>
           </div>
-          <button id='submitbutton' disabled={disabled}>Submit</button>
+          <button id="submitbutton" disabled={disabled}>
+            Submit
+          </button>
         </div>
       </form>
     </div>
-  )
+  );
 }

@@ -1,8 +1,10 @@
 export {
-  //Erica to add her edit name actions here
+  FETCH_INVENTORY,
   ADD_ITEM,
   ADD_CATEGORY,
   EDIT_NAME,
   EDIT_DESCRIPTION,
   DELETE_ITEM,
-} from "./Actions";
+  FETCH_CATEGORIES,
+} from "./actions";
+
