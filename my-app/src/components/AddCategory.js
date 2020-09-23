@@ -4,16 +4,16 @@ import { addItemCategory } from "../store/actions";
 
 function AddCategory(product) {
   state = {
-    newCategory: "",
+    catname: "",
   };
 
   handleChanges = (e) => {
-    setState({ newCategory: e.target.value });
+    setState({ catname: e.target.value });
   };
 
   handleCategorySubmit = (e) => {
     e.preventDefault();
-    props.add({ name: state.newCategory });
+    props.add({ catname: state.catname });
   };
 
   return (
@@ -26,7 +26,7 @@ function AddCategory(product) {
       <form onSubmit={handleCategorySubmit}>
         <input
           type="text"
-          value={state.newCategory}
+          value={state.catname}
           onChange={handleChanges}
           placeholder="Add new category"
         />
