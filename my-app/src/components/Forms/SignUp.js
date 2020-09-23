@@ -76,11 +76,11 @@ export default function RegistryForm(props) {
     const newuser = {
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      // id: //add code to generate id for user
-      admin: false,
-    };
-    addNewUser(newuser);
-  };
+
+    }
+    addNewUser(newuser)
+  }
+
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
