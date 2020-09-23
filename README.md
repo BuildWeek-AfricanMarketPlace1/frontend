@@ -3,8 +3,8 @@
 Devolopers:
 
 React 1:
-Rod Hentringer
+- Rod Hentringer
 
 React 2:
-Erica Girges
-Mary Baker 
+- Erica Girges
+- Mary Baker 
