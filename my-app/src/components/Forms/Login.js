@@ -46,7 +46,6 @@ const Login = () => {
   }
 
   const attemptLogin = (userInfo) => {
-    event.preventDefault();
     axiosWithAuth()
       .post("api/auth/login", values)
       .then((response) => {
@@ -56,12 +55,12 @@ const Login = () => {
       })
       .catch((error) => {
         alert("Login failed.");
-      });
-  };
+      })
       .finally(() => {
         setValues(initialValues)
       })
-  }
+    }
+
 
   const submit = () => {
     const userInfo = {

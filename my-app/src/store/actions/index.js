@@ -5,4 +5,4 @@ export {
   EDIT_NAME,
   EDIT_DESCRIPTION,
   DELETE_ITEM,
-} from "./Actions";
+} from "./actions";
