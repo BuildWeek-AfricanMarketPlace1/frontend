@@ -1,4 +1,4 @@
-import { FETCH_INVENTORY } from "../actions";
+import { DELETE_ITEM, FETCH_INVENTORY } from "../actions";
 import { ADD_ITEM } from "../actions";
 
 const initialState = {
@@ -13,6 +13,11 @@ export default function inventoryReducer(state = initialState, action) {
         inventory: action.payload,
       };
     case ADD_ITEM:
+      return {
+        ...state,
+        inventory: [...state.inventory, action.payload],
+      };
+    case DELETE_ITEM:
       return {
         ...state,
         inventory: [...state.inventory, action.payload],

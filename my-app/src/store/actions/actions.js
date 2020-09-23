@@ -91,16 +91,29 @@ export const editItemDescription = (product, productId) => {
 
 //Delete Item Action
 //Mary & Erica to pair program
-export const deleteItem = () => {
+export const deleteItem = (productId) => {
   return (dispatch) => {
-    dispatch({ type: DELETE_ITEM });
-    // axiosWithAuth()
-    // .delete(`/api/items${id}`)
-    //    .then(response => {
-    //      console.log(response)
-    //    })
-    //    .catch(err => {
-    //      console.log(err)
-    //    });
+    axiosWithAuth()
+      .delete(`/api/items/${productId}`)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: DELETE_ITEM, payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+};
+
+const deleteMovie = (event) => {
+  event.preventDefault();
+  axios
+    .delete(`http://localhost:5000/api/movies/${params.id}`)
+    .then((response) => {
+      setMovieList(response.data);
+      history.push("/");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
