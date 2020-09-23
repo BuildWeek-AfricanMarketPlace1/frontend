@@ -80,8 +80,6 @@ export default function RegistryForm(props) {
     const newuser = {
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      // id: //add code to generate id for user
-      admin: false,
     }
     addNewUser(newuser)
   }
