@@ -17,7 +17,7 @@ export const addItem = () => {
 
 //Get Item Categories
 //Mary to insert code here
-export const fetchCategories = () => {
+export const fetchItemCategories = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_CATEGORIES });
     axiosWithAuth()
@@ -33,11 +33,11 @@ export const fetchCategories = () => {
 
 //Add Item Category Action
 //Mary to insert code here
-export const addCategory = () => {
+export const addItemCategory = (newCategory) => {
   return (dispatch) => {
     dispatch({ type: ADD_CATEGORY });
     axiosWithAuth()
-      .post(`/api/categories/${id}`)
+      .post(`/api/categories`, newCategory)
       .then((res) => {
         console.log(res);
       })
@@ -57,7 +57,7 @@ export const editName = () => {
 
 //Update Description Action
 //Mary to insert code here
-export const editDescription = () => {
+export const editItemDescription = () => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ADD_CATEGORY } from "../store/actions";
+import { addItemCategory } from "../store/actions";
 
 function AddCategory(product) {
   state = {
@@ -13,7 +13,7 @@ function AddCategory(product) {
 
   handleCategorySubmit = (e) => {
     e.preventDefault();
-    props.ADD_CATEGORY({ name: state.newCategory });
+    props.add({ name: state.newCategory });
   };
 
   return (
@@ -36,6 +36,10 @@ function AddCategory(product) {
   );
 }
 
-export default connect(mapStateToProps, { FETCH_CATEGORIES, ADD_CATEGORY })(
-  AddCategory
-);
+function mapStateToProps(state) {
+  return {
+    categories: state.categories,
+  };
+}
+
+export default connect(mapStateToProps, { addItemCategory })(AddCategory);

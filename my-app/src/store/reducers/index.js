@@ -11,7 +11,7 @@ const initialState = {
   catname: "",
   name: "",
   description: "",
-  price: 0,
+  price: 0.0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action) {
     case EDIT_DESCRIPTION:
       return {
         ...state,
-        description: [...state.description, action.payload],
+        description: action.payload,
       };
     case DELETE_ITEM:
       return {};
