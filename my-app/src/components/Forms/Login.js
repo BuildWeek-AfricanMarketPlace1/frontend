@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import * as yup from "yup";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
-import * as yup from 'yup'
-import schema from './validate-login'
-import axios from 'axios'
-import "./Login.css"
-
+import schema from './validate-login';
+import "./Login.css";
 
 const initialValues = {
   email: '',
@@ -47,19 +46,21 @@ const Login = () => {
   }
 
   const attemptLogin = (userInfo) => {
-    axios.post('https://african-market712.herokuapp.com/api/auth/login', userInfo)
-      .then(res => {
-        console.log('response', res)
-        window.localStorage.setItem('token', res.data)
-        history.push('/protected')
+    axiosWithAuth()
+      .post("api/auth/login", values)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data.payload);
+        history.push("/dashboard");
       })
-      .catch(err => {
-        console.log(err)
+      .catch((error) => {
+        alert("Login failed.");
       })
       .finally(() => {
         setValues(initialValues)
       })
-  }
+    }
+
 
   const submit = () => {
     const userInfo = {
