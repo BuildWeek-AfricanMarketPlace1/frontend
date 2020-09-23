@@ -16,9 +16,9 @@ function AddProduct({ inventory, addItem }) {
   const [newItem, setNewItem] = useState(initialFormValues);
   const history = useHistory();
 
-  useEffect(() => {
-    addItem();
-  }, [addItem]);
+  const handleSubmit = (event) => {
+    addItem(newItem);
+  };
 
   const handleChanges = (event) => {
     setNewItem({
@@ -30,7 +30,8 @@ function AddProduct({ inventory, addItem }) {
   return (
     <div>
       <h2>Add a new Product</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
+        <br></br>
         <label>
           Product name:
           <input
@@ -40,6 +41,7 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <label>
           Export Location:
           <input
@@ -49,7 +51,9 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <label>
+          Category:
           <select
             onChange={handleChanges}
             value={newItem.catname}
@@ -63,7 +67,24 @@ function AddProduct({ inventory, addItem }) {
             <option value="Vegetables">Vegetables</option>
           </select>
         </label>
+        <Link exact to="/add-category">
+          <span>
+            <button>Add Category</button>
+          </span>
+        </Link>
+        <br></br>
         <label>
+          Description:
+          <input
+            type="text"
+            name="description"
+            value={newItem.description}
+            onChange={handleChanges}
+          />
+        </label>
+        <br></br>
+        <label>
+          Price:
           <input
             type="number"
             step=".01"
@@ -73,6 +94,7 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <button>Submit</button>
       </form>
       {/* {products.map(product => (

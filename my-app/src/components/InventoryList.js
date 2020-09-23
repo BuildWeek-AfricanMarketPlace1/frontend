@@ -4,29 +4,32 @@ import InventoryItem from "./InventoryItem";
 import { connect } from "react-redux";
 import { fetchInventory } from "../store/actions/actions";
 
-const InventoryList = ({inventory, fetchInventory}) => {
+const InventoryList = ({ inventory, fetchInventory }) => {
+  console.log(inventory);
 
-    console.log(inventory);
-
-    // useEffect(() => {
-    //     fetchInventory();
-    //   }, [fetchInventory]);
+  // useEffect(() => {
+  //     fetchInventory();
+  //   }, [fetchInventory]);
 
   return (
     <div>
-      {inventory.map((product) => (
+      <h2>Inventory List</h2>
+      <Link exact to="/add-products">
+        Add Items
+      </Link>
+      {/* {inventory.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <InventoryItem product={product} />
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 };
 
 function mapStateToProps(state) {
-    return {
-      inventory: state.inventory,
-    };
-  }
-  
-  export default connect(mapStateToProps, { fetchInventory})(InventoryList);
+  return {
+    inventory: state.inventory,
+  };
+}
+
+export default connect(mapStateToProps, { fetchInventory })(InventoryList);

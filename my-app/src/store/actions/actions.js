@@ -9,8 +9,9 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 
 //Get Entire Inventory List
-export const fetchInventory = (userId) => {
+export const fetchInventory = () => {
   return (dispatch) => {
+    const userId = localStorage.getItem("id");
     axiosWithAuth()
       .get(`api/items/user/${userId}`)
       .then((response) => {
@@ -23,6 +24,7 @@ export const fetchInventory = (userId) => {
 //Erica to insert code here
 export const addItem = (newProduct, userId) => {
   return (dispatch) => {
+    const userId = localStorage.getItem("id");
     axiosWithAuth()
       .post(`api/items/user/${userId}`, newProduct)
       .then((response) => {
@@ -48,7 +50,7 @@ export const fetchItemCategories = () => {
 
 //Add Item Category Action
 //Mary to insert code here
-export const addItemCategory = (newCategory) => {
+export const addCategory = (newCategory) => {
   return (dispatch) => {
     axiosWithAuth()
       .post(`api/categories`, newCategory)
@@ -75,7 +77,7 @@ export const editName = (product, productId) => {
 
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = (product, productId) => {
+export const editDescription = (product, productId) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
@@ -91,16 +93,16 @@ export const editItemDescription = (product, productId) => {
 
 //Delete Item Action
 //Mary & Erica to pair program
-export const deleteItem = () => {
+export const deleteItem = (productId) => {
   return (dispatch) => {
-    dispatch({ type: DELETE_ITEM });
-    // axiosWithAuth()
-    // .delete(`/api/items${id}`)
-    //    .then(response => {
-    //      console.log(response)
-    //    })
-    //    .catch(err => {
-    //      console.log(err)
-    //    });
+    axiosWithAuth()
+      .delete(`/api/items/${productId}`)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: DELETE_ITEM, payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

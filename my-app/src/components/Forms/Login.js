@@ -50,6 +50,7 @@ const Login = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.payload);
+        localStorage.setItem("id", response.data.data.id);
         history.push("/dashboard");
       })
       .catch((error) => {
