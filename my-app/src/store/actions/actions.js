@@ -104,16 +104,3 @@ export const deleteItem = (productId) => {
       });
   };
 };
-
-const deleteMovie = (event) => {
-  event.preventDefault();
-  axios
-    .delete(`http://localhost:5000/api/movies/${params.id}`)
-    .then((response) => {
-      setMovieList(response.data);
-      history.push("/");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
