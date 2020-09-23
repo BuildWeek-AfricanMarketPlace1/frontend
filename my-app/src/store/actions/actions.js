@@ -38,7 +38,7 @@ export const addItem = (newProduct, userId) => {
 export const fetchItemCategories = () => {
   return (dispatch) => {
     axiosWithAuth()
-      .get("/api/categories")
+      .get("api/categories")
       .then((response) => {
         dispatch({ type: FETCH_CATEGORIES, payload: response.data });
       })

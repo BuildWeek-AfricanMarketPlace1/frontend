@@ -10,7 +10,7 @@ import AddProduct from "./components/AddProduct";
 import EditName from "./components/EditName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
-import AddCategory from "./components/AddCategory";
+import AddItemCategory from "./components/AddItemCategory";
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
         <EditName />
       </PrivateRoute>
       <PrivateRoute exact path="/add-category">
-        <AddCategory />
+        <AddItemCategory />
       </PrivateRoute>
     </div>
   );
