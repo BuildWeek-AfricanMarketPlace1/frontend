@@ -31,6 +31,7 @@ function AddProduct({ inventory, addItem }) {
     <div>
       <h2>Add a new Product</h2>
       <form>
+        <br></br>
         <label>
           Product name:
           <input
@@ -40,6 +41,7 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <label>
           Export Location:
           <input
@@ -49,7 +51,9 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <label>
+          Category:
           <select
             onChange={handleChanges}
             value={newItem.catname}
@@ -63,7 +67,9 @@ function AddProduct({ inventory, addItem }) {
             <option value="Vegetables">Vegetables</option>
           </select>
         </label>
+        <br></br>
         <label>
+          Price:
           <input
             type="number"
             step=".01"
@@ -73,6 +79,7 @@ function AddProduct({ inventory, addItem }) {
             onChange={handleChanges}
           />
         </label>
+        <br></br>
         <button>Submit</button>
       </form>
       {/* {products.map(product => (

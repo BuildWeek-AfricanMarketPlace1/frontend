@@ -14,7 +14,9 @@ const InventoryList = ({ inventory, fetchInventory }) => {
   return (
     <div>
       <h2>Inventory List</h2>
-      <Link>Add Items</Link>
+      <Link exact to="/add-products">
+        Add Items
+      </Link>
       {/* {inventory.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <InventoryItem product={product} />
