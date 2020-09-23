@@ -47,7 +47,7 @@ const Login = () => {
 
   const attemptLogin = (userInfo) => {
     axiosWithAuth()
-      .post("api/auth/login", values)
+      .post("api/auth/login", userInfo)
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.payload);
@@ -56,9 +56,9 @@ const Login = () => {
       .catch((error) => {
         alert("Login failed.");
       })
-      .finally(() => {
-        setValues(initialValues)
-      })
+      // .finally(() => {
+      //   setValues(initialValues)
+      // })
     }
 
 

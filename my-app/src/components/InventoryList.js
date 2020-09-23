@@ -8,9 +8,9 @@ const InventoryList = ({inventory, fetchInventory}) => {
 
     console.log(inventory);
 
-    // useEffect(() => {
-    //     fetchInventory();
-    //   }, [fetchInventory]);
+    useEffect(() => {
+        fetchInventory();
+      }, [fetchInventory]);
 
   return (
     <div>
