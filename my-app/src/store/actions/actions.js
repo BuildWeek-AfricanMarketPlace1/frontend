@@ -19,11 +19,10 @@ export const addItem = () => {
 //Mary to insert code here
 export const fetchItemCategories = () => {
   return (dispatch) => {
-    dispatch({ type: FETCH_CATEGORIES });
     axiosWithAuth()
       .get("/api/categories")
       .then((response) => {
-        console.log(response);
+        dispatch({ type: FETCH_CATEGORIES, payload: response.data });
       })
       .catch((error) => {
         console.log(error);
@@ -35,11 +34,10 @@ export const fetchItemCategories = () => {
 //Mary to insert code here
 export const addItemCategory = (newCategory) => {
   return (dispatch) => {
-    dispatch({ type: ADD_CATEGORY });
     axiosWithAuth()
-      .post(`/api/categories`, newCategory)
-      .then((res) => {
-        console.log(res);
+      .post(`api/categories`, newCategory)
+      .then((response) => {
+        dispatch({ type: ADD_CATEGORY, payload: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -57,13 +55,13 @@ export const editName = () => {
 
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = () => {
+export const editItemDescription = (product) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
-      .put(`/api/items${id}`, updatedData)
-      .then((res) => {
-        console.log(res);
+      .put(`/api/items${productId}`, product)
+      .then((response) => {
+        dispatch({ type: EDIT_DESCRIPTION, payload: response.data });
       })
       .catch((err) => {
         console.log(err);
