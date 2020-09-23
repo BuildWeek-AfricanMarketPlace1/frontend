@@ -1,4 +1,3 @@
-import { ADD_ITEM } from "../actions";
 import { EDIT_NAME } from "../actions";
 import { EDIT_DESCRIPTION } from "../actions";
 import { DELETE_ITEM } from "../actions";
@@ -15,10 +14,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ITEM:
-      return {};
     case EDIT_NAME:
-      return {};
+      return {
+          ...state,
+          name: action.payload,
+      };
     case EDIT_DESCRIPTION:
       return {
         ...state,
