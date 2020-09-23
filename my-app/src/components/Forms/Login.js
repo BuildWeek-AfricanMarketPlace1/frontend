@@ -1,25 +1,54 @@
-import React from "react";
 import * as yup from "yup";
-import schema from "./validate-login.js";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import schema from './validate-login';
+import "./Login.css";
 
-const initialFormErrors = {
-  email: "",
-  password: "",
-};
-const initialDisabled = true;
+const initialValues = {
+  email: '',
+  password: ''
+}
 
-export default function Login() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const initialErrors = {
+  email: '',
+  password: '',
+  request: ''
+}
 
-  const history = useHistory();
+const initialDisabled = true
 
-  const handleSubmit = (event) => {
+const Login = () => {
+
+  let history = useHistory();
+
+  const [values, setValues] = useState(initialValues)
+  const [errors, setErrors] = useState(initialErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)
+
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(valid => {
+        console.log(valid)
+        setErrors({ ...errors, [name]: '' })
+      })
+      .catch(err => {
+        console.log(err)
+        setErrors({ ...errors, [name]: err.errors[0] })
+      })
+  }
+
+  const update = (name, value) => {
+    validate(name, value)
+    setValues({ ...values, [name]: value })
+  }
+
+  const attemptLogin = (userInfo) => {
     event.preventDefault();
     axiosWithAuth()
-      .post("api/auth/login", email, password)
+      .post("api/auth/login", values)
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.payload);
@@ -29,77 +58,76 @@ export default function Login() {
         alert("Login failed.");
       });
   };
-
-  // Validation - TLTsay
-  const [formErrors, setFormErrors] = React.useState(initialFormErrors);
-  const [disabled, setDisabled] = React.useState(initialDisabled);
-
-  const validate = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      //if successful validation = empty error message
-      .then((valid) => {
-        setFormErrors({ ...formErrors, [name]: "" });
+      .finally(() => {
+        setValues(initialValues)
       })
-      //if unsucessful = set error message from validate-login.js
-      .catch((err) => {
-        setFormErrors({ ...formErrors, [name]: err.errors[0] });
-      });
-  };
+  }
 
-  React.useEffect(() => {
-    schema.isValid(email).then((valid) => {
-      setDisabled(!valid);
-    });
-  }, [email]);
+  const submit = () => {
+    const userInfo = {
+      email: values.email.trim(),
+      password: values.password.trim()
+    }
+    attemptLogin(userInfo)
+  }
 
-  React.useEffect(() => {
-    schema.isValid(password).then((valid) => {
-      setDisabled(!valid);
-    });
-  }, [password]);
+  useEffect(() => {
+    schema.isValid(values)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+  }, [values])
+
+  const { url, path } = useRouteMatch()
+
+  const onChange = evt => {
+    const { name, value } = evt.target
+    update(name, value)
+  }
+
+  const onSubmit = evt => {
+    evt.preventDefault()
+    submit()
+  }
+
 
   return (
-    <>
-      <form onSubmit={handleSubmit} id="loginform">
-        <h1>Log In</h1>
-
-        <label>
-          <p>Email:</p>
-          <br />
+    <div>
+      <div className='left'>
+        <Link to='SignUp'>create an account</Link>
+      </div>
+      <div className='right'>
+        <h2>Log In</h2>
+        <form onSubmit={onSubmit}>
           <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              validate("email", e.target.value);
-              setEmail(e.target.value);
-            }}
-            required
+            name='email'
+            type='text'
+            placeholder='email'
+            value={values.email}
+            onChange={onChange}
           />
-          {formErrors.email}
-          <br></br>
-        </label>
-
-        <label>
-          <p>Password:</p>
           <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              validate("password", e.target.value);
-              setPassword(e.target.value);
-            }}
-            required
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={values.password}
+            onChange={onChange}
           />
-          {formErrors.password}
-          <br></br>
-        </label>
-
-        <button disabled={disabled}>Submit</button>
-      </form>
-    </>
-  );
+          <button disabled={disabled} type="submit">Log In</button>
+          <div>
+            <span style={{ color: 'red' }}>{errors.email}</span>
+            <br />
+            <span style={{ color: 'red' }}>{errors.password}</span>
+            <br />
+            <span style={{ color: 'red' }}>{errors.request}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
+
+
+
+
+export default Login
