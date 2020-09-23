@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { addItem } from "../store/actions/Actions";
+import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
 
 const initialFormValues = {
