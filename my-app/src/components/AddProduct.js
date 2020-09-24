@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ const initialFormValues = {
 
 function AddProduct({ inventory, addItem }) {
   const [newItem, setNewItem] = useState(initialFormValues);
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleSubmit = (event) => {
     addItem(newItem);

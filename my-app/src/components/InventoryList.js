@@ -7,11 +7,17 @@ import { fetchInventory } from "../store/actions/actions";
 const InventoryList = ({ inventory, fetchInventory }) => {
   console.log(inventory);
 
+<<<<<<< HEAD
     console.log(inventory);
 
     useEffect(() => {
         fetchInventory();
       }, [fetchInventory]);
+=======
+  useEffect(() => {
+    fetchInventory();
+  }, [fetchInventory]);
+>>>>>>> 80d23e9a2b247413c4ebe60ceb16dcd490f6dfa0
 
   return (
     <div>
@@ -19,11 +25,11 @@ const InventoryList = ({ inventory, fetchInventory }) => {
       <Link exact to="/add-products">
         Add Items
       </Link>
-      {/* {inventory.map((product) => (
+      {inventory.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <InventoryItem product={product} />
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 };
