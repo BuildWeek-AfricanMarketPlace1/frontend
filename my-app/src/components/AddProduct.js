@@ -3,30 +3,29 @@ import { Link } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
-
 const initialFormValues = {
+  user_id: 1,
+  location_id: 1,
+  category_id: 1,
   name: "",
-  locname: "",
-  catname: "",
   description: "",
   price: 0.0,
 };
-
-function AddProduct({ inventory, addItem }) {
+function AddProduct({ inventory, addItem, categories }) {
   const [newItem, setNewItem] = useState(initialFormValues);
   // const history = useHistory();
-
   const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Submit is happening");
+    console.log({ newItem });
     addItem(newItem);
   };
-
   const handleChanges = (event) => {
     setNewItem({
       ...newItem,
       [event.target.name]: event.target.value,
     });
   };
-
   return (
     <div>
       <h2>Add a new Product</h2>
@@ -45,9 +44,9 @@ function AddProduct({ inventory, addItem }) {
         <label>
           Export Location:
           <input
-            type="text"
-            name="locname"
-            value={newItem.locname}
+            type="number"
+            name="location_id"
+            value={newItem.id}
             onChange={handleChanges}
           />
         </label>
@@ -56,15 +55,17 @@ function AddProduct({ inventory, addItem }) {
           Category:
           <select
             onChange={handleChanges}
-            value={newItem.catname}
-            name="catname"
+            type="number"
+            value={newItem.category_id}
+            name="category_id"
           >
-            <option value="">Select a Product Category</option>
-            <option value="Animal Products">Animal Products</option>
-            <option value="Beans">Beans</option>
-            <option value="Cereals">Cereals</option>
-            <option value="Fruits">Fruits</option>
-            <option value="Vegetables">Vegetables</option>
+            {categories.map((category) => {
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.catname}
+                </option>
+              );
+            })}
           </select>
         </label>
         <Link exact to="/add-category">
@@ -103,11 +104,10 @@ function AddProduct({ inventory, addItem }) {
     </div>
   );
 }
-
 function mapStateToProps(state) {
   return {
     inventory: state.inventory,
+    categories: state.categories,
   };
 }
-
 export default connect(mapStateToProps, { addItem })(AddProduct);
