@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -7,10 +7,10 @@ import SignUp from "./components/Forms/SignUp.js";
 import Dashboard from "./components/Dashboard";
 import InventoryList from "./components/InventoryList";
 import AddProduct from "./components/AddProduct";
-import EditName from "./components/EditName";
+import UpdateName from "./components/UpdateName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
-import AddCategory from "./components/AddCategory";
+import AddItemCategory from "./components/AddItemCategory";
 
 function App() {
   return (
@@ -44,10 +44,10 @@ function App() {
         <AddProduct />
       </PrivateRoute>
       <PrivateRoute exact path="/name-editor/:id">
-        <EditName />
+        <UpdateName />
       </PrivateRoute>
       <PrivateRoute exact path="/add-category">
-        <AddCategory />
+        <AddItemCategory />
       </PrivateRoute>
     </div>
   );

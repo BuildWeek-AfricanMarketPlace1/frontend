@@ -15,14 +15,15 @@ export const fetchInventory = () => {
     axiosWithAuth()
       .get(`api/items/user/${userId}`)
       .then((response) => {
-        dispatch({ type: FETCH_INVENTORY, payload: response.data });
+        console.log(response.data.resp)
+        dispatch({ type: FETCH_INVENTORY, payload: response.data.resp });
       });
   };
 };
 
 //Add Item Action
 //Erica to insert code here
-export const addItem = (newProduct, userId) => {
+export const addItem = (newProduct) => {
   return (dispatch) => {
     const userId = localStorage.getItem("id");
     axiosWithAuth()

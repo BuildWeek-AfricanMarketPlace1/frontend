@@ -7,8 +7,6 @@ import { fetchInventory } from "../store/actions/actions";
 const InventoryList = ({ inventory, fetchInventory }) => {
   console.log(inventory);
 
-    console.log(inventory);
-
     useEffect(() => {
         fetchInventory();
       }, [fetchInventory]);

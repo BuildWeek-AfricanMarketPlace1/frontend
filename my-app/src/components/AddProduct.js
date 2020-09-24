@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
@@ -18,6 +18,7 @@ function AddProduct({ inventory, addItem }) {
 
   const handleSubmit = (event) => {
     addItem(newItem);
+    history.push("/inventory")
   };
 
   const handleChanges = (event) => {

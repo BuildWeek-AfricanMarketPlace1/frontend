@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { editItemDescription } from "../store/actions";
+import { editItemDescription } from "../store/actions/actions";
 
 const initialItem = {
   name: "",
@@ -23,8 +23,7 @@ const EditDescription = () => {
   };
 
   const handleDescriptionSubmit = (e) => {
-    e.preventDefault();
-    props.add({ description: state.newCategory });
+    editItemDescription()
   };
 
   return (
