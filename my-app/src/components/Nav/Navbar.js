@@ -1,11 +1,18 @@
-import React from 'react';
+import React from 'react'
+import { Nav, NavbarContainer, NavLogo, NavIcon } from './NavbarElements.js'
 
 const Navbar = () => {
 	return (
-		<div>
-			<p>Its working</p>
-		</div>
-	);
-};
+		<>
+			<Nav>
+				<NavbarContainer>
+					<NavLogo to="/">
+						<NavIcon />
+					</NavLogo>
+				</NavbarContainer>
+			</Nav>
+		</>
+	)
+}
 
-export default Navbar;
+export default Navbar
