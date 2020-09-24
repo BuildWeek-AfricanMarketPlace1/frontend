@@ -11,23 +11,16 @@ import UpdateName from './components/UpdateName'
 import PrivateRoute from './components/PrivateRoute'
 import InventoryItem from './components/InventoryItem'
 import AddItemCategory from './components/AddItemCategory'
-import { Navbar } from './components/'
-import GlobalStyles from './globalStyles'
+import Navbar from './components/Nav/Navbar'
+import GlobalStyle from './globalStyles.js'
 
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
-				{/* <Navbar /> */}
-				<h1>African Marketplace</h1>
-				<nav>
-					<Link exact to="/">
-						Home
-					</Link>
-					<Link to="/login">Login</Link>
-					<Link to="/signup">Sign Up</Link>
-				</nav>
-			</header>
+			<Router>
+				<GlobalStyle />
+			</Router>
+			<Navbar />
 			<Route path="/login">
 				<Login />
 			</Route>
