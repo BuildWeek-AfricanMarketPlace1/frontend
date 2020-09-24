@@ -5,15 +5,14 @@ const InventoryItem = ({ product }) => {
   console.log(product);
   return (
     <div>
-      <h2>{product.name}</h2>
-      <p>Category: {product.catname}</p>
-      <p>Description: {product.description}</p>
-      <p>Price: {product.price}</p>
-      <p>Source Location: {product.locname}</p>
-      <Link key={product.id} to={`/location-editor/${product.id}`}>
-        <button>Edit location</button>
-      </Link>
-      <button>Edit Category</button>
+    {/* //   <h2>{product.name}</h2>
+    //   <p>Category: {product.catname}</p>
+    //   <p>Description: {product.description}</p>
+    //   <p>Price: {product.price}</p>
+    //   <Link key={product.id} to={`/location-editor/${product.id}`}>
+    //     <button>Edit Name</button>
+    //   </Link>
+    //   <button>Edit Category</button> */}
     </div>
   );
 };

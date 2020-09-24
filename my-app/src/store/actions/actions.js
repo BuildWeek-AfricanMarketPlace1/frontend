@@ -6,6 +6,7 @@ export const EDIT_NAME = "EDIT_NAME";
 export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const FETCH_ITEM = "FETCH_ITEM";
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
@@ -78,12 +79,13 @@ export const editName = (product, productId) => {
 };
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = (product, productId) => {
+export const editItemDescription = (description, productId) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
-      .put(`/api/items/${productId}`, product)
+      .put(`/api/items/${productId}`, description)
       .then((response) => {
+        console.log("RESPONSE", response);
         dispatch({ type: EDIT_DESCRIPTION, payload: response.data.data });
       })
       .catch((err) => {
@@ -106,3 +108,5 @@ export const deleteItem = (productId) => {
       });
   };
 };
+
+

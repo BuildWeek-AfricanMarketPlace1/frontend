@@ -6,5 +6,6 @@ export {
   EDIT_DESCRIPTION,
   DELETE_ITEM,
   FETCH_CATEGORIES,
+  FETCH_ITEM,
 } from "./actions";
 

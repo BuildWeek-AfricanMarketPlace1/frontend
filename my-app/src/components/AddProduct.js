@@ -41,16 +41,6 @@ function AddProduct({ inventory, addItem, categories }) {
         </label>
         <br></br>
         <label>
-          Export Location:
-          <input
-            type="number"
-            name="location_id"
-            value={newItem.id}
-            onChange={handleChanges}
-          />
-        </label>
-        <br></br>
-        <label>
           Category:
           <select
             onChange={handleChanges}

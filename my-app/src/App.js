@@ -1,7 +1,7 @@
 
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useParams } from "react-router-dom";
 import "./App.css";
 
 import Login from "./components/Forms/Login.js";
@@ -13,14 +13,17 @@ import UpdateName from "./components/UpdateName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
+import EditDescription from "./components/EditDescription";
 import { fetchItemCategories } from "./store/actions/actions";
 import Navbar from './components/Nav/Navbar'
-import GlobalStyle from './globalStyles.js'
+import GlobalStyle from './globalStyles.js';
 
 function App({ fetchItemCategories }) {
   useEffect(() => {
     fetchItemCategories();
   }, [fetchItemCategories]);
+
+  const params = useParams();
 
   return (
     <div className="App">
@@ -51,6 +54,9 @@ function App({ fetchItemCategories }) {
       </PrivateRoute>
       <PrivateRoute exact path="/add-category">
         <AddItemCategory />
+      </PrivateRoute>
+      <PrivateRoute exact path="/description-editor/:id">
+        <EditDescription />
       </PrivateRoute>
     </div>
   );

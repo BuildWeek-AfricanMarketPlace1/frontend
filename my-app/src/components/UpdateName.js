@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { editName } from "../store/actions/actions";
+import { useParams } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialItem = {
-  user_id: 0,
   location_id: 1,
   category_id: 1,
   name: "",
@@ -11,34 +12,59 @@ const initialItem = {
   price: 0.0,
 };
 
-const UpdateName = () => {
+const UpdateName = ({editName}) => {
   const [updatedItem, setUpdatedItem] = useState(initialItem);
+  const params = useParams();
+
+  console.log("FUNCTION RUNNING", editName);
+
+  console.log("ITEM ID", params)
+ 
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/api/items/${params.id}`)
+      .then((response) => {
+        setUpdatedItem(response.data.data[0])
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [params.id]);
+
 
   const handleChanges = (event) => {
     event.persist();
     let value = event.target.value;
     setUpdatedItem({
       ...updatedItem,
-      [event.target.name]: value,
+      description: value,
     });
   };
 
   const handleSubmit = (event) => {
-    editName();
+    editName(updatedItem.name, params.id);
   };
+
+
+  console.log("ITEM", updatedItem);
 
   return (
     <div>
-      {/* <h2>Edit Name</h2>
+      <h2>Updated name:{updatedItem.name}</h2>
+      <p>Category: {updatedItem.catname}</p>
+      <h3>Description: {updatedItem.description}</h3>
+      <p>Price: {updatedItem.price}</p>
+      <p>Edit Name</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={state.name}
+          value={updatedItem.name}
           onChange={handleChanges}
-          placeholder={state.name}
+          placeholder={updatedItem.name}
         />
         <button>Update</button>
-      </form> */}
+      </form>
     </div>
   );
 };

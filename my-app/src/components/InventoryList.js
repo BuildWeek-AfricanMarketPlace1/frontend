@@ -8,11 +8,10 @@ const InventoryList = ({ inventory, fetchInventory }) => {
   console.log(inventory);
   console.log(fetchInventory);
 
-
   useEffect(() => {
     fetchInventory();
   }, [fetchInventory]);
-
+ console.log("inventory: ",  inventory)
   return (
     <div>
       <h2>Inventory List</h2>
@@ -20,9 +19,24 @@ const InventoryList = ({ inventory, fetchInventory }) => {
         Add Items
       </Link>
       {inventory.map((product) => (
-        <Link key={product.id} to={`/product/${product.id}`}>
-          <InventoryItem product={product} />
-        </Link>
+        <div key={product.id}>
+          <h2>{product.name}</h2>
+          <span>
+            {" "}
+            <Link to={`/location-editor/${product.id}`}>
+              <button>Edit Name</button>
+            </Link>
+          </span>
+          <p>Category: {product.catname}</p>
+          <p>Description: {product.description}</p>
+          <span>
+            <Link to={`/description-editor/${product.id}`}>
+              {" "}
+              <button>Edit Description</button>
+            </Link>{" "}
+          </span>
+          <p>Price: {product.price}</p>
+        </div>
       ))}
     </div>
   );
