@@ -2,12 +2,23 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Cards from '../Cards/Cards.js'
+import styled from 'styled-components'
 
-// const Links = styled.div`
-// 	body {
-// 		text-decoration: none;
-// 	}
-// `
+const StyledDiv = styled.div`
+	align-content: center;
+	width: 100%;
+	text-align: center;
+
+	h2 {
+		text-align: center;
+	}
+
+	h4 {
+		text-decoration: none;
+		color: red;
+		margin: 5%;
+	}
+`
 
 const Dashboard = () => {
 	const [locations, setLocations] = useState([])
@@ -24,13 +35,13 @@ const Dashboard = () => {
 	}, [])
 	// console.log('loc', locations)
 	return (
-		<div className="Dashboard">
+		<StyledDiv>
 			<h2>Your Locations</h2>
 			<Cards onLocations={locations} />
 			<Link exact to={'/inventory'}>
 				<h4>Click here to view your inventory</h4>
 			</Link>
-		</div>
+		</StyledDiv>
 	)
 }
 

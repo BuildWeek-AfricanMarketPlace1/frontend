@@ -10,7 +10,7 @@ export const homeObjOne = {
 		'With our mobile-based platform, any trader with a basic mobile phone can access real-time market prices, exchange rates and trade procedures.We help business owners increase their revenue. Our team of unique specialist can help you achieve your business goals.',
 	buttonLabel: 'Get Started',
 	imgStart: '',
-	img: require('../../images/svg-1.svg'),
+	img: require('../../images/iconafrican.jpg'),
 	alt: 'Credit Card',
 	start: '',
 }

@@ -4,7 +4,55 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 //Commented our useRouteMatch from react-router-dom since it isn't being used
 import schema from './validate-login'
-import './Login.css'
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+	font-family: 'Roboto Slab', sans-serif;
+
+	body {
+		font-family: 'Roboto Slab', sans-serif;
+		background: white;
+		color: #484848;
+		padding: 40px;
+	}
+	h2 {
+		text-align: center;
+		padding: 0px;
+	}
+
+	input {
+		margin-bottom: 15px;
+		margin-top: 5px;
+		padding: 10px;
+		border: 1px solid #cfcfcf;
+		font-family: 'Roboto Slab', sans-serif;
+		font-size: 16px;
+		outline: none;
+	}
+
+	button {
+		cursor: pointer;
+		padding: 12px;
+		background: #999;
+		font-family: 'Roboto Slab', sans-serif;
+		font-size: 16px;
+		border: none;
+		outline: none;
+		color: white;
+		border-bottom: 2px solid #797979;
+
+		&:hover {
+			background-color: #a1a1a1;
+		}
+
+		&:active {
+			background-color: #888;
+		}
+	}
+`
 
 const initialValues = {
 	email: '',
@@ -20,7 +68,6 @@ const initialErrors = {
 const initialDisabled = true
 
 const Login = () => {
-
 	let history = useHistory()
 
 	const [values, setValues] = useState(initialValues)
@@ -91,10 +138,10 @@ const Login = () => {
 	}
 
 	return (
-		<div>
+		<StyledDiv>
 			<div id="loginform">
-				<h2>Login</h2>
 				<form onSubmit={onSubmit}>
+					<label htmlFor="username">Username:</label>
 					<input
 						name="email"
 						type="text"
@@ -121,7 +168,7 @@ const Login = () => {
 					</div>
 				</form>
 			</div>
-		</div>
+		</StyledDiv>
 	)
 }
 

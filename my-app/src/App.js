@@ -1,30 +1,31 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import "./App.css";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import './App.css'
 
-import Login from "./components/Forms/Login.js";
-import SignUp from "./components/Forms/SignUp.js";
-import Dashboard from "./components/Dashboard";
-import InventoryList from "./components/InventoryList";
-import AddProduct from "./components/AddProduct";
-import UpdateName from "./components/UpdateName";
-import PrivateRoute from "./components/PrivateRoute";
-import InventoryItem from "./components/InventoryItem";
-import AddItemCategory from "./components/AddItemCategory";
-import { fetchItemCategories } from "./store/actions/actions";
+import Login from './components/Forms/Login.js'
+import SignUp from './components/Forms/SignUp.js'
+import Dashboard from './components/Dashboard/Dashboard.js'
+import InventoryList from './components/InventoryList'
+import AddProduct from './components/AddProduct'
+import UpdateName from './components/UpdateName'
+import PrivateRoute from './components/PrivateRoute'
+import InventoryItem from './components/InventoryItem'
+import AddItemCategory from './components/AddItemCategory'
+import { fetchItemCategories } from './store/actions/actions'
 import { Navbar, Footer } from './components'
 
 import GlobalStyle from './globalStyles.js'
 import Home from './pages/HomePage/Home'
 import ScrollToTop from './components/ScrollToTop'
 
-function App({ fetchItemCategories }) {
-  useEffect(() => {
-    fetchItemCategories();
-  }, [fetchItemCategories]);
+// function App({ fetchItemCategories }) {
+//   useEffect(() => {
+//     fetchItemCategories();
+//   }, [fetchItemCategories]);
 
-  return (
+function App() {
+	return (
 		<Router>
 			<GlobalStyle />
 			<ScrollToTop />
@@ -54,11 +55,12 @@ function App({ fetchItemCategories }) {
 			</Switch>
 			<Footer />
 		</Router>
+	)
 }
+// function mapStateToProps(state) {
+//   return {};
+// }
 
-function mapStateToProps(state) {
-  return {};
-}
+// export default connect(mapStateToProps, { fetchItemCategories })(App);
 
-export default connect(mapStateToProps, { fetchItemCategories })(App);
-
+export default App
