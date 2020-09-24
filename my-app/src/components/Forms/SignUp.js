@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import schema from "./validate-signup";
 import { useHistory } from "react-router-dom";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+//Commented our BrowserRouter as Router from react-router-dom since it isn't being used
 
 const intitialformvalues = {
   // strings
@@ -20,7 +21,8 @@ const initialFormErrors = {
 };
 
 export default function RegistryForm(props) {
-  const [Users, setUsers] = useState({});
+  // const [Users, setUsers] = useState({});
+  //Commented out since it isn't being used
   const [formValues, setFormValues] = useState(intitialformvalues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
@@ -37,9 +39,7 @@ export default function RegistryForm(props) {
       .catch((error) => {
         alert("Register failed.");
       })
-      .finally(() => {
-
-      })
+      .finally(() => {});
     console.log(newuser);
     setFormValues(intitialformvalues);
   };
@@ -76,10 +76,9 @@ export default function RegistryForm(props) {
     const newuser = {
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-
-    }
-    addNewUser(newuser)
-  }
+    };
+    addNewUser(newuser);
+  };
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {

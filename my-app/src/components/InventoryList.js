@@ -7,9 +7,9 @@ import { fetchInventory } from "../store/actions/actions";
 const InventoryList = ({ inventory, fetchInventory }) => {
   console.log(inventory);
 
-  // useEffect(() => {
-  //     fetchInventory();
-  //   }, [fetchInventory]);
+  useEffect(() => {
+    fetchInventory();
+  }, [fetchInventory]);
 
   return (
     <div>
@@ -17,11 +17,11 @@ const InventoryList = ({ inventory, fetchInventory }) => {
       <Link exact to="/add-products">
         Add Items
       </Link>
-      {/* {inventory.map((product) => (
+      {inventory.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <InventoryItem product={product} />
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 };
