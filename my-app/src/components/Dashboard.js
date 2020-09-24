@@ -11,12 +11,12 @@ const Dashboard = () => {
 		axios
 			.get(URL)
 			.then((response) => {
-				console.log(response.data)
-				setLocations(response.data)
+				console.log('then', response.data.data)
+				setLocations(response.data.data)
 			})
 			.catch((err) => console.log('error', err))
 	}, [])
-
+	// console.log('loc', locations)
 	return (
 		<div className="Dashboard">
 			<h2>Your Locations</h2>
