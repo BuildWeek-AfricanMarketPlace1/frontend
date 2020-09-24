@@ -49,20 +49,18 @@ const Login = () => {
     axiosWithAuth()
       .post("api/auth/login", userInfo)
       .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data.payload);
-        localStorage.setItem("id", response.data.data.id);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("id", response.data.id);
         history.push("/dashboard");
       })
       .catch((error) => {
         console.log(error);
         alert("Login failed.");
-      })
-      // .finally(() => {
-      //   setValues(initialValues)
-      // })
-    }
-
+      });
+    // .finally(() => {
+    //   setValues(initialValues)
+    // })
+  };
 
   const submit = () => {
     const userInfo = {

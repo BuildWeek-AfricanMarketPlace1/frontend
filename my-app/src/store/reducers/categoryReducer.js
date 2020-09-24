@@ -2,7 +2,17 @@ import { FETCH_CATEGORIES } from "../actions";
 import { ADD_CATEGORY } from "../actions";
 
 const initialState = {
-  category: "",
+  inventory: [
+    {
+      id: 0,
+      user_id: 0,
+      locname: "",
+      catname: "",
+      name: "",
+      description: "",
+      price: 0.0,
+    },
+  ],
 };
 
 export default function reducer(state = initialState, action) {
