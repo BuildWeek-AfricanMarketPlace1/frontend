@@ -1,7 +1,7 @@
 
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 
 import Login from "./components/Forms/Login.js";
