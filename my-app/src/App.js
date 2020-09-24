@@ -54,7 +54,7 @@ function App({ fetchItemCategories }) {
 			</Switch>
 			<Footer />
 		</Router>
-}
+  )		
 
 function mapStateToProps(state) {
   return {};
