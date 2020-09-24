@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyles } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyles`
 *{
     box-sizing: border-box;
     margin: 0;
@@ -26,4 +26,4 @@ export const Container = styled.div`
 	}
 `
 
-export default GlobalStyle
+export default GlobalStyles

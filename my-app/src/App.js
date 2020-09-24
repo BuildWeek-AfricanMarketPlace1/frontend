@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 
 import Login from './components/Forms/Login.js'
@@ -11,13 +11,14 @@ import UpdateName from './components/UpdateName'
 import PrivateRoute from './components/PrivateRoute'
 import InventoryItem from './components/InventoryItem'
 import AddItemCategory from './components/AddItemCategory'
-import { Navbar } from './components/Nav/Navbar.js'
+import { Navbar } from './components/'
+import GlobalStyles from './globalStyles'
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Navbar />
+				{/* <Navbar /> */}
 				<h1>African Marketplace</h1>
 				<nav>
 					<Link exact to="/">
