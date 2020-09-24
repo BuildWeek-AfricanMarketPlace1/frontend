@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -14,8 +13,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
 import { fetchItemCategories } from "./store/actions/actions";
-import Navbar from './components/Nav/Navbar'
+import { Navbar, Footer } from './components'
+
 import GlobalStyle from './globalStyles.js'
+import Home from './pages/HomePage/Home'
+import ScrollToTop from './components/ScrollToTop'
 
 function App({ fetchItemCategories }) {
   useEffect(() => {
@@ -23,37 +25,35 @@ function App({ fetchItemCategories }) {
   }, [fetchItemCategories]);
 
   return (
-    <div className="App">
-			<Router>
-				<GlobalStyle />
-			</Router>
+		<Router>
+			<GlobalStyle />
+			<ScrollToTop />
 			<Navbar />
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <PrivateRoute exact path="/dashboard">
-        <Dashboard />
-      </PrivateRoute>
-      <PrivateRoute exact path="/inventory">
-        <InventoryList />
-      </PrivateRoute>
-      <PrivateRoute exact path="/product/:id">
-        <InventoryItem />
-      </PrivateRoute>
-      <PrivateRoute exact path="/add-products">
-        <AddProduct />
-      </PrivateRoute>
-      <PrivateRoute exact path="/name-editor/:id">
-        <UpdateName />
-      </PrivateRoute>
-      <PrivateRoute exact path="/add-category">
-        <AddItemCategory />
-      </PrivateRoute>
-    </div>
-  );
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<PrivateRoute exact path="/dashboard">
+					<Dashboard />
+				</PrivateRoute>
+				<PrivateRoute exact path="/inventory">
+					<InventoryList />
+				</PrivateRoute>
+				<PrivateRoute exact path="/product/:id">
+					<InventoryItem />
+				</PrivateRoute>
+				<PrivateRoute exact path="/add-products">
+					<AddProduct />
+				</PrivateRoute>
+				<PrivateRoute exact path="/name-editor/:id">
+					<UpdateName />
+				</PrivateRoute>
+				<PrivateRoute exact path="/add-category">
+					<AddItemCategory />
+				</PrivateRoute>
+				<Route path="/login" component={Login} />
+				<Route path="/sign-up" component={SignUp} />
+			</Switch>
+			<Footer />
+		</Router>
 }
 
 function mapStateToProps(state) {
