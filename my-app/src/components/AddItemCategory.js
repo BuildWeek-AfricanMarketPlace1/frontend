@@ -10,6 +10,8 @@ function AddItemCategory({ categories, addCategory }) {
   const [newCategory, setNewCategory] = useState(initialValue);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     addCategory(newCategory);
   };
 

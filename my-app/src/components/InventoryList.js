@@ -13,7 +13,6 @@ const InventoryList = ({ inventory, fetchInventory }) => {
     fetchInventory();
   }, [fetchInventory]);
 
-
   return (
     <div>
       <h2>Inventory List</h2>

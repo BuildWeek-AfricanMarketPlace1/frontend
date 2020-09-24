@@ -27,7 +27,10 @@ export const addItem = (newProduct) => {
     const userId = localStorage.getItem("id");
     console.log("Item was posted");
     axiosWithAuth()
-      .post(`api/items/user/${userId}`, newProduct)
+      .post(`api/items/user/${userId}`, {
+        ...newProduct,
+        user_id: userId,
+      })
       .then((response) => {
         dispatch({ type: ADD_ITEM, payload: response.data.data });
       });

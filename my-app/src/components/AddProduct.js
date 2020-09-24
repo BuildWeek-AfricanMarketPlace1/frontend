@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
 const initialFormValues = {
-  user_id: 1,
   location_id: 1,
   category_id: 1,
   name: "",
@@ -17,7 +16,7 @@ function AddProduct({ inventory, addItem, categories }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submit is happening");
-    console.log({ newItem });
+    console.log('NEWITEM', { newItem });
     addItem(newItem);
   };
   const handleChanges = (event) => {
