@@ -46,7 +46,7 @@ function AddProduct({ inventory, addItem }) {
           Export Location:
           <input
             type="text"
-            name="location"
+            name="locname"
             value={newItem.locname}
             onChange={handleChanges}
           />
@@ -57,7 +57,7 @@ function AddProduct({ inventory, addItem }) {
           <select
             onChange={handleChanges}
             value={newItem.catname}
-            name="category"
+            name="catname"
           >
             <option value="">Select a Product Category</option>
             <option value="Animal Products">Animal Products</option>

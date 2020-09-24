@@ -7,7 +7,7 @@ import SignUp from "./components/Forms/SignUp.js";
 import Dashboard from "./components/Dashboard";
 import InventoryList from "./components/InventoryList";
 import AddProduct from "./components/AddProduct";
-import EditName from "./components/EditName";
+import UpdateName from "./components/UpdateName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
@@ -44,7 +44,7 @@ function App() {
         <AddProduct />
       </PrivateRoute>
       <PrivateRoute exact path="/name-editor/:id">
-        <EditName />
+        <UpdateName />
       </PrivateRoute>
       <PrivateRoute exact path="/add-category">
         <AddItemCategory />

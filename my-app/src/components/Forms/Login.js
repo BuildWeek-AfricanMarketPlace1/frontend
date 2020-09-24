@@ -57,11 +57,12 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
         alert("Login failed.");
-      });
-    // .finally(() => {
-    //   setValues(initialValues)
-    // })
-  };
+      })
+      // .finally(() => {
+      //   setValues(initialValues)
+      // })
+    }
+
 
   const submit = () => {
     const userInfo = {
