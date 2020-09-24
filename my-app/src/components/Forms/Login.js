@@ -1,7 +1,8 @@
 import * as yup from "yup";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import React, { useState, useEffect } from "react";
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+//Commented our useRouteMatch from react-router-dom since it isn't being used
 import schema from "./validate-login";
 import "./Login.css";
 
@@ -50,16 +51,18 @@ const Login = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.payload);
+        localStorage.setItem("id", response.data.data.id);
         history.push("/dashboard");
       })
       .catch((error) => {
         console.log(error);
         alert("Login failed.");
-      });
-    // .finally(() => {
-    //   setValues(initialValues)
-    // })
-  };
+      })
+      // .finally(() => {
+      //   setValues(initialValues)
+      // })
+    }
+
 
   const submit = () => {
     const userInfo = {
@@ -75,7 +78,7 @@ const Login = () => {
     });
   }, [values]);
 
-  const { url, path } = useRouteMatch();
+  // const { url, path } = useRouteMatch();
 
   const onChange = (evt) => {
     const { name, value } = evt.target;

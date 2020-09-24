@@ -2,7 +2,7 @@ import { FETCH_CATEGORIES } from "../actions";
 import { ADD_CATEGORY } from "../actions";
 
 const initialState = {
-  category: [],
+  category: "",
 };
 
 export default function reducer(state = initialState, action) {
