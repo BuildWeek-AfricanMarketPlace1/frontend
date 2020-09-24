@@ -2,16 +2,27 @@ import React from "react";
 import { connect } from "react-redux";
 import { editItemDescription } from "../store/actions";
 
-function EditDescription(product) {
-  state = {
-    description: "",
+const initialItem = {
+  name: "",
+  locname: "",
+  catname: "",
+  description: "",
+  price: 0.0,
+};
+
+const EditDescription = () => {
+  const [updatedItem, setUpdatedItem] = useState(initialItem);
+
+  const handleChanges = (event) => {
+    e.persist();
+    let value = event.target.value;
+    setUpdatedItem({
+      ...updatedItem,
+      [event.target.name]: value,
+    });
   };
 
-  handleChanges = (e) => {
-    setState({ description: e.target.value });
-  };
-
-  handleDescriptionSubmit = (e) => {
+  const handleDescriptionSubmit = (e) => {
     e.preventDefault();
     props.add({ description: state.newCategory });
   };
@@ -30,7 +41,7 @@ function EditDescription(product) {
       </form>
     </div>
   );
-}
+};
 
 function mapStateToProps(state) {
   return {
