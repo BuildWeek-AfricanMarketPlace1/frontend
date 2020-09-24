@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { editItemDescription } from "../store/actions";
 
 const initialItem = {
+  user_id: 0,
+  location_id: 1,
+  category_id: 1,
   name: "",
-  locname: "",
-  catname: "",
   description: "",
   price: 0.0,
 };

@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { editName } from "../store/actions/actions";
 
 const initialItem = {
+  user_id: 0,
+  location_id: 1,
+  category_id: 1,
   name: "",
-  locname: "",
-  catname: "",
   description: "",
   price: 0.0,
 };
@@ -23,7 +24,7 @@ const UpdateName = () => {
   };
 
   const handleSubmit = (event) => {
-    editName()
+    editName();
   };
 
   return (
@@ -48,6 +49,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { editName })(
-  UpdateName
-);
+export default connect(mapStateToProps, { editName })(UpdateName);

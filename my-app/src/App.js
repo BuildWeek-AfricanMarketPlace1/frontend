@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -11,8 +12,13 @@ import UpdateName from "./components/UpdateName";
 import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
+import { fetchItemCategories } from "./store/actions/actions";
 
-function App() {
+function App({ fetchItemCategories }) {
+  useEffect(() => {
+    fetchItemCategories();
+  }, [fetchItemCategories]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -53,4 +59,8 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps, { fetchItemCategories })(App);

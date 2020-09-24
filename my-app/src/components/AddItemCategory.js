@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addCategory, fetchItemCategories } from "../store/actions/actions";
+import { addCategory } from "../store/actions/actions";
 
 const initialValue = {
   catname: "",
 };
 
-function AddItemCategory({ category, addCategory, fetchItemCategories }) {
+function AddItemCategory({ categories, addCategory }) {
   const [newCategory, setNewCategory] = useState(initialValue);
 
   const handleSubmit = (event) => {
@@ -19,10 +19,6 @@ function AddItemCategory({ category, addCategory, fetchItemCategories }) {
       [event.target.name]: event.target.value,
     });
   };
-
-  useEffect(() => {
-    fetchItemCategories();
-  }, [fetchItemCategories]);
 
   return (
     <div>
@@ -41,10 +37,10 @@ function AddItemCategory({ category, addCategory, fetchItemCategories }) {
         <button>Add</button>
       </form>
       <h2>Categories</h2>
-      {category.map((cat) => {
+      {categories.map((category) => {
         return (
-          <div key={cat.id}>
-            <p>{cat.name}</p>
+          <div key={category.id}>
+            <p>{category.catname}</p>
           </div>
         );
       })}
@@ -54,7 +50,7 @@ function AddItemCategory({ category, addCategory, fetchItemCategories }) {
 
 function mapStateToProps(state) {
   return {
-    category: state.category,
+    categories: state.categories,
   };
 }
 
