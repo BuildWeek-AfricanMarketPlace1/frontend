@@ -17,6 +17,9 @@ function AddProduct({ inventory, addItem }) {
   // const history = useHistory();
 
   const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Submit is happening");
+    console.log({ newItem });
     addItem(newItem);
   };
 

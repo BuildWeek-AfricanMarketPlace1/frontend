@@ -11,11 +11,14 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
+    console.log("fetch is called");
     const userId = localStorage.getItem("id");
     axiosWithAuth()
       .get(`api/items/user/${userId}`)
       .then((response) => {
-        dispatch({ type: FETCH_INVENTORY, payload: response.data });
+        console.log(response);
+        const items = response.data;
+        dispatch({ type: FETCH_INVENTORY, payload: items });
       });
   };
 };
@@ -25,6 +28,7 @@ export const fetchInventory = () => {
 export const addItem = (newProduct, userId) => {
   return (dispatch) => {
     const userId = localStorage.getItem("id");
+    console.log("Item was posted");
     axiosWithAuth()
       .post(`api/items/user/${userId}`, newProduct)
       .then((response) => {
