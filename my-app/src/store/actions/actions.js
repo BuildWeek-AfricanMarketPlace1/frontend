@@ -6,6 +6,7 @@ export const EDIT_NAME = "EDIT_NAME";
 export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
@@ -20,6 +21,7 @@ export const fetchInventory = () => {
       });
   };
 };
+
 //Add Item Action
 //Erica to insert code here
 export const addItem = (newProduct) => {
@@ -29,10 +31,12 @@ export const addItem = (newProduct) => {
     axiosWithAuth()
       .post(`api/items/user/${userId}`, newProduct)
       .then((response) => {
+        console.log(response);
         dispatch({ type: ADD_ITEM, payload: response.data.data });
       });
   };
 };
+
 //Get Item Categories
 //Mary to insert code here
 export const fetchItemCategories = () => {
@@ -48,6 +52,7 @@ export const fetchItemCategories = () => {
       });
   };
 };
+
 //Add Item Category Action
 //Mary to insert code here
 export const addCategory = (newCategory) => {
@@ -55,6 +60,7 @@ export const addCategory = (newCategory) => {
     axiosWithAuth()
       .post(`api/categories`, newCategory)
       .then((response) => {
+        console.log(response);
         dispatch({ type: ADD_CATEGORY, payload: response.data.data });
       })
       .catch((err) => {
@@ -62,6 +68,7 @@ export const addCategory = (newCategory) => {
       });
   };
 };
+
 //Update Name Action
 //Erica to insert code here
 export const editName = (product, productId) => {
@@ -73,6 +80,7 @@ export const editName = (product, productId) => {
       });
   };
 };
+
 //Update Description Action
 //Mary to insert code here
 export const editItemDescription = (product, productId) => {
@@ -88,6 +96,7 @@ export const editItemDescription = (product, productId) => {
       });
   };
 };
+
 //Delete Item Action
 //Mary & Erica to pair program
 export const deleteItem = (productId) => {
