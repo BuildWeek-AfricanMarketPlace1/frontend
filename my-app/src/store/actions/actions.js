@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-
 export const FETCH_INVENTORY = "FETCH_INVENTORY";
 export const ADD_ITEM = "ADD_ITEM";
 export const ADD_CATEGORY = "ADD_CATEGORY";
@@ -7,7 +6,6 @@ export const EDIT_NAME = "EDIT_NAME";
 export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
-
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
@@ -22,10 +20,9 @@ export const fetchInventory = () => {
       });
   };
 };
-
 //Add Item Action
 //Erica to insert code here
-export const addItem = (newProduct, userId) => {
+export const addItem = (newProduct) => {
   return (dispatch) => {
     const userId = localStorage.getItem("id");
     console.log("Item was posted");
@@ -36,7 +33,6 @@ export const addItem = (newProduct, userId) => {
       });
   };
 };
-
 //Get Item Categories
 //Mary to insert code here
 export const fetchItemCategories = () => {
@@ -52,7 +48,6 @@ export const fetchItemCategories = () => {
       });
   };
 };
-
 //Add Item Category Action
 //Mary to insert code here
 export const addCategory = (newCategory) => {
@@ -67,7 +62,6 @@ export const addCategory = (newCategory) => {
       });
   };
 };
-
 //Update Name Action
 //Erica to insert code here
 export const editName = (product, productId) => {
@@ -79,7 +73,6 @@ export const editName = (product, productId) => {
       });
   };
 };
-
 //Update Description Action
 //Mary to insert code here
 export const editItemDescription = (product, productId) => {
@@ -95,7 +88,6 @@ export const editItemDescription = (product, productId) => {
       });
   };
 };
-
 //Delete Item Action
 //Mary & Erica to pair program
 export const deleteItem = (productId) => {

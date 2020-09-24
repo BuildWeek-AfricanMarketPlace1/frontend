@@ -3,34 +3,29 @@ import { Link } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
-
 const initialFormValues = {
-  user_id: 0,
+  user_id: 1,
   location_id: 1,
   category_id: 1,
   name: "",
   description: "",
   price: 0.0,
 };
-
 function AddProduct({ inventory, addItem, categories }) {
   const [newItem, setNewItem] = useState(initialFormValues);
   // const history = useHistory();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submit is happening");
     console.log({ newItem });
     addItem(newItem);
   };
-
   const handleChanges = (event) => {
     setNewItem({
       ...newItem,
       [event.target.name]: event.target.value,
     });
   };
-
   return (
     <div>
       <h2>Add a new Product</h2>
@@ -46,22 +41,23 @@ function AddProduct({ inventory, addItem, categories }) {
           />
         </label>
         <br></br>
-        {/* <label>
+        <label>
           Export Location:
           <input
-            type="text"
-            name="locname"
-            value={newItem.locname}
+            type="number"
+            name="location_id"
+            value={newItem.id}
             onChange={handleChanges}
           />
         </label>
-        <br></br> */}
+        <br></br>
         <label>
           Category:
           <select
             onChange={handleChanges}
+            type="number"
             value={newItem.category_id}
-            name="catname"
+            name="category_id"
           >
             {categories.map((category) => {
               return (
@@ -108,12 +104,10 @@ function AddProduct({ inventory, addItem, categories }) {
     </div>
   );
 }
-
 function mapStateToProps(state) {
   return {
     inventory: state.inventory,
     categories: state.categories,
   };
 }
-
 export default connect(mapStateToProps, { addItem })(AddProduct);
