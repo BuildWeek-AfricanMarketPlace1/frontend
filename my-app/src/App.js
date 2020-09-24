@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Link } from "react-router-dom";
@@ -13,6 +14,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
 import { fetchItemCategories } from "./store/actions/actions";
+import Navbar from './components/Nav/Navbar'
+import GlobalStyle from './globalStyles.js'
 
 function App({ fetchItemCategories }) {
   useEffect(() => {
@@ -21,16 +24,10 @@ function App({ fetchItemCategories }) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>African Marketplace</h1>
-        <nav>
-          <Link exact to="/">
-            Home
-          </Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </nav>
-      </header>
+			<Router>
+				<GlobalStyle />
+			</Router>
+			<Navbar />
       <Route path="/login">
         <Login />
       </Route>
@@ -64,3 +61,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchItemCategories })(App);
+
