@@ -79,11 +79,11 @@ export const editName = (product, productId) => {
 };
 //Update Description Action
 //Mary to insert code here
-export const editItemDescription = (description, productId) => {
+export const editItemDescription = (product, productId) => {
   return (dispatch) => {
     dispatch({ type: EDIT_DESCRIPTION });
     axiosWithAuth()
-      .put(`/api/items/${productId}`, description)
+      .put(`/api/items/${productId}`, product)
       .then((response) => {
         console.log("RESPONSE", response);
         dispatch({ type: EDIT_DESCRIPTION, payload: response.data.data });

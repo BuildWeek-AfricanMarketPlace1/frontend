@@ -2,16 +2,23 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import InventoryItem from "./InventoryItem";
 import { connect } from "react-redux";
-import { fetchInventory } from "../store/actions/actions";
+import { fetchInventory, deleteItem } from "../store/actions/actions";
 
-const InventoryList = ({ inventory, fetchInventory }) => {
+const InventoryList = ({ inventory, fetchInventory, deleteItem }) => {
   console.log(inventory);
   console.log(fetchInventory);
 
   useEffect(() => {
     fetchInventory();
   }, [fetchInventory]);
- console.log("inventory: ",  inventory)
+  console.log("inventory: ", inventory);
+
+  const handleDelete = (event, productId) => {
+    event.preventDefault();
+    deleteItem(productId);
+    console.log(productId);
+  };
+
   return (
     <div>
       <h2>Inventory List</h2>
@@ -22,8 +29,7 @@ const InventoryList = ({ inventory, fetchInventory }) => {
         <div key={product.id}>
           <h2>{product.name}</h2>
           <span>
-            {" "}
-            <Link to={`/location-editor/${product.id}`}>
+            <Link to={`/name-editor/${product.id}`}>
               <button>Edit Name</button>
             </Link>
           </span>
@@ -31,11 +37,11 @@ const InventoryList = ({ inventory, fetchInventory }) => {
           <p>Description: {product.description}</p>
           <span>
             <Link to={`/description-editor/${product.id}`}>
-              {" "}
               <button>Edit Description</button>
-            </Link>{" "}
+            </Link>
           </span>
           <p>Price: {product.price}</p>
+          <button onClick={(e) => handleDelete(e, product.id)}>Delete Item</button>
         </div>
       ))}
     </div>
@@ -49,4 +55,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchInventory })(InventoryList);
+export default connect(mapStateToProps, { fetchInventory, deleteItem })(InventoryList);

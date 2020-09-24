@@ -16,8 +16,6 @@ const EditDescription = ({ editItemDescription }) => {
   const [updatedItem, setUpdatedItem] = useState(initialItem);
   const params = useParams();
 
-  // console.log("FUNCTION RUNNING", editItemDescription);
-
   console.log("ITEM ID", params)
 
   useEffect(() => {
@@ -43,15 +41,6 @@ const EditDescription = ({ editItemDescription }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editItemDescription(updatedItem, params.id);
-      // axiosWithAuth()
-      // .put(`/api/items/${params.id}`, updatedItem)
-      // .then((response) => {
-      //   console.log("RESPONSE", response)
-      //   setUpdatedItem(response.data.data)
-      // })
-      // .catch((error) => {
-      //   console.log(error)
-      // })
   
   };
 

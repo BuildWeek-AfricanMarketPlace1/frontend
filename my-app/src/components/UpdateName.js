@@ -37,13 +37,13 @@ const UpdateName = ({editName}) => {
     event.persist();
     let value = event.target.value;
     setUpdatedItem({
-      ...updatedItem,
-      description: value,
+      name: value,
     });
   };
 
   const handleSubmit = (event) => {
-    editName(updatedItem.name, params.id);
+    event.preventDefault();
+    editName(updatedItem, params.id);
   };
 
 
