@@ -101,7 +101,7 @@ export const deleteItem = (productId) => {
       .delete(`/api/items/${productId}`)
       .then((response) => {
         console.log(response);
-        dispatch({ type: DELETE_ITEM, payload: response.data.data });
+        dispatch({ type: DELETE_ITEM, payload: productId });
       })
       .catch((err) => {
         console.log(err);

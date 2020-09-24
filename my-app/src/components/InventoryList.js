@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import InventoryItem from "./InventoryItem";
 import { connect } from "react-redux";
 import { fetchInventory, deleteItem } from "../store/actions/actions";
 

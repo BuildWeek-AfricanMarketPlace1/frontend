@@ -11,7 +11,6 @@ import InventoryList from "./components/InventoryList";
 import AddProduct from "./components/AddProduct";
 import UpdateName from "./components/UpdateName";
 import PrivateRoute from "./components/PrivateRoute";
-import InventoryItem from "./components/InventoryItem";
 import AddItemCategory from "./components/AddItemCategory";
 import EditDescription from "./components/EditDescription";
 import { fetchItemCategories } from "./store/actions/actions";
@@ -42,9 +41,6 @@ function App({ fetchItemCategories }) {
       </PrivateRoute>
       <PrivateRoute exact path="/inventory">
         <InventoryList />
-      </PrivateRoute>
-      <PrivateRoute exact path="/product/:id">
-        <InventoryItem />
       </PrivateRoute>
       <PrivateRoute exact path="/add-products">
         <AddProduct />
