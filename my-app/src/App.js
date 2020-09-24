@@ -50,7 +50,7 @@ function App({ fetchItemCategories }) {
 					<AddItemCategory />
 				</PrivateRoute>
 				<Route path="/login" component={Login} />
-				<Route path="/sign-up" component={SignUp} />
+				<Route path="/signup" component={SignUp} />
 			</Switch>
 			<Footer />
 		</Router>

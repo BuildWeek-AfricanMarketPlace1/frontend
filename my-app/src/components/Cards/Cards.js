@@ -2,16 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+display:flex;
+width:100%;
+`
+
+const StyledDiv = styled.div`
 	.card {
-		display: flex;
-		flex-wrap:wrap;
 		background: WHITESMOKE;
-		display: flex;
-		justify-content: space-around
-
 		border-radius: 2px;
-
-		height: 125px;
+		height: 50px;
 		margin: 1rem;
 		width: 20%;
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -37,16 +36,14 @@ const StyledDiv = styled.div`
 const Cards = ({ onLocations }) => {
 	console.log('data', onLocations)
 	return (
-		<div>
+			<StyledDiv>
 			{onLocations.map((loc) => (
-				<StyledDiv>
-					<div className="card">
+					<StyledCard
+					 className="card">
 						<h2>{loc.locname}</h2>
-					</div>
-				</StyledDiv>
+					</StyledCard>
 			))}
-		</div>
+			</StyledDiv>
 	)
 }
-
 export default Cards
