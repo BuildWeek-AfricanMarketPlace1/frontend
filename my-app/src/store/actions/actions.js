@@ -11,11 +11,14 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
+    console.log("fetch is called");
     const userId = localStorage.getItem("id");
     axiosWithAuth()
       .get(`api/items/user/${userId}`)
       .then((response) => {
-        dispatch({ type: FETCH_INVENTORY, payload: response.data });
+        console.log(response);
+        const items = response.data.data;
+        dispatch({ type: FETCH_INVENTORY, payload: items });
       });
   };
 };
@@ -25,10 +28,11 @@ export const fetchInventory = () => {
 export const addItem = (newProduct, userId) => {
   return (dispatch) => {
     const userId = localStorage.getItem("id");
+    console.log("Item was posted");
     axiosWithAuth()
       .post(`api/items/user/${userId}`, newProduct)
       .then((response) => {
-        dispatch({ type: ADD_ITEM, payload: response.data });
+        dispatch({ type: ADD_ITEM, payload: response.data.data });
       });
   };
 };
@@ -41,7 +45,7 @@ export const fetchItemCategories = () => {
       .get("api/categories")
       .then((response) => {
         console.log(response);
-        dispatch({ type: FETCH_CATEGORIES, payload: response.data });
+        dispatch({ type: FETCH_CATEGORIES, payload: response.data.data });
       })
       .catch((error) => {
         console.log(error);
@@ -56,7 +60,7 @@ export const addCategory = (newCategory) => {
     axiosWithAuth()
       .post(`api/categories`, newCategory)
       .then((response) => {
-        dispatch({ type: ADD_CATEGORY, payload: response.data });
+        dispatch({ type: ADD_CATEGORY, payload: response.data.data });
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +75,7 @@ export const editName = (product, productId) => {
     axiosWithAuth()
       .put(`api/items/${productId}`, product)
       .then((response) => {
-        dispatch({ type: EDIT_NAME, payload: response.data });
+        dispatch({ type: EDIT_NAME, payload: response.data.data });
       });
   };
 };
@@ -84,7 +88,7 @@ export const editItemDescription = (product, productId) => {
     axiosWithAuth()
       .put(`/api/items/${productId}`, product)
       .then((response) => {
-        dispatch({ type: EDIT_DESCRIPTION, payload: response.data });
+        dispatch({ type: EDIT_DESCRIPTION, payload: response.data.data });
       })
       .catch((err) => {
         console.log(err);
@@ -100,7 +104,7 @@ export const deleteItem = (productId) => {
       .delete(`/api/items/${productId}`)
       .then((response) => {
         console.log(response);
-        dispatch({ type: DELETE_ITEM, payload: response.data });
+        dispatch({ type: DELETE_ITEM, payload: response.data.data });
       })
       .catch((err) => {
         console.log(err);

@@ -6,10 +6,13 @@ import { fetchInventory } from "../store/actions/actions";
 
 const InventoryList = ({ inventory, fetchInventory }) => {
   console.log(inventory);
+  console.log(fetchInventory);
 
-  // useEffect(() => {
-  //   fetchInventory();
-  // }, [fetchInventory]);
+
+  useEffect(() => {
+    fetchInventory();
+  }, [fetchInventory]);
+
 
   return (
     <div>
@@ -27,6 +30,7 @@ const InventoryList = ({ inventory, fetchInventory }) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     inventory: state.inventory,
   };
