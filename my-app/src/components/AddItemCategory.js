@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addCategory } from "../store/actions/actions";
+import { addCategory, fetchItemCategories } from "../store/actions/actions";
 
 const initialValue = {
   catname: "",
 };
 
-function AddItemCategory({ category, addCategory }) {
+function AddItemCategory({ category, addCategory, fetchItemCategories }) {
   const [newCategory, setNewCategory] = useState(initialValue);
 
-  const handleChanges = (event) => {
+  const handleSubmit = (event) => {
     addCategory(newCategory);
   };
 
-  const handleSubmit = (event) => {
+  const handleChanges = (event) => {
     setNewCategory({
       ...newCategory,
       [event.target.name]: event.target.value,
     });
   };
+
+  useEffect(() => {
+    fetchItemCategories();
+  }, [fetchItemCategories]);
 
   return (
     <div>
@@ -28,7 +32,7 @@ function AddItemCategory({ category, addCategory }) {
         <label>
           <input
             type="text"
-            name="category"
+            name="catname"
             value={newCategory.catname}
             onChange={handleChanges}
           />
@@ -36,13 +40,21 @@ function AddItemCategory({ category, addCategory }) {
         <br></br>
         <button>Add</button>
       </form>
+      <h2>Categories</h2>
+      {category.map((cat) => {
+        return (
+          <div key={cat.id}>
+            <p>{cat.name}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
+    category: state.category,
   };
 }
 

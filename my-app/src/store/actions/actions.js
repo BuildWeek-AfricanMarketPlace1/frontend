@@ -40,6 +40,7 @@ export const fetchItemCategories = () => {
     axiosWithAuth()
       .get("api/categories")
       .then((response) => {
+        console.log(response);
         dispatch({ type: FETCH_CATEGORIES, payload: response.data });
       })
       .catch((error) => {
