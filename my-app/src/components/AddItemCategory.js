@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addCategory, deleteCategory } from "../store/actions/actions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledContainer = styled.div `
@@ -131,10 +131,12 @@ const initialValue = {
 
 function AddItemCategory({ categories, addCategory, deleteCategory }) {
   const [newCategory, setNewCategory] = useState(initialValue);
+  const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addCategory(newCategory);
+    history.push("/add-products")
   };
 
   const handleChanges = (event) => {
