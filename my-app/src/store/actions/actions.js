@@ -6,6 +6,8 @@ export const EDIT_NAME = "EDIT_NAME";
 export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const FETCH_ITEM = "FETCH_ITEM";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
@@ -27,7 +29,10 @@ export const addItem = (newProduct) => {
     const userId = localStorage.getItem("id");
     console.log("Item was posted");
     axiosWithAuth()
-      .post(`api/items/user/${userId}`, newProduct)
+      .post(`api/items/user/${userId}`, {
+        ...newProduct,
+        user_id: userId,
+      })
       .then((response) => {
         dispatch({ type: ADD_ITEM, payload: response.data.data });
       });
@@ -81,6 +86,7 @@ export const editItemDescription = (product, productId) => {
     axiosWithAuth()
       .put(`/api/items/${productId}`, product)
       .then((response) => {
+        console.log("RESPONSE", response);
         dispatch({ type: EDIT_DESCRIPTION, payload: response.data.data });
       })
       .catch((err) => {
@@ -96,10 +102,26 @@ export const deleteItem = (productId) => {
       .delete(`/api/items/${productId}`)
       .then((response) => {
         console.log(response);
-        dispatch({ type: DELETE_ITEM, payload: response.data.data });
+        dispatch({ type: DELETE_ITEM, payload: productId });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 };
+
+export const deleteCategory = (categoryId) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .delete(`/api/categories/${categoryId}`)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: DELETE_CATEGORY, payload: categoryId });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+

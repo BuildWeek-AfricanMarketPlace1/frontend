@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { addItem } from "../store/actions/actions";
 import { connect } from "react-redux";
 const initialFormValues = {
-  user_id: 1,
   location_id: 1,
   category_id: 1,
   name: "",
@@ -13,12 +12,14 @@ const initialFormValues = {
 };
 function AddProduct({ inventory, addItem, categories }) {
   const [newItem, setNewItem] = useState(initialFormValues);
-  // const history = useHistory();
+  const history = useHistory();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submit is happening");
-    console.log({ newItem });
+    console.log('NEWITEM', { newItem });
     addItem(newItem);
+    history.push("/inventory")
   };
   const handleChanges = (event) => {
     setNewItem({
@@ -37,16 +38,6 @@ function AddProduct({ inventory, addItem, categories }) {
             type="text"
             name="name"
             value={newItem.name}
-            onChange={handleChanges}
-          />
-        </label>
-        <br></br>
-        <label>
-          Export Location:
-          <input
-            type="number"
-            name="location_id"
-            value={newItem.id}
             onChange={handleChanges}
           />
         </label>

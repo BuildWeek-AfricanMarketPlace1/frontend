@@ -70,7 +70,7 @@ export default function RegistryForm(props) {
 			.then((response) => {
 				console.log(response)
 				localStorage.setItem('token', response.data.payload)
-				history.push('/dashboard')
+				history.push('/login')
 			})
 			.catch((error) => {
 				alert('Register failed.')

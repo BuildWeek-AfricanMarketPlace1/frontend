@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { editItemDescription } from "../store/actions";
+import { editItemDescription } from "../store/actions/actions";
+import { useParams } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialItem = {
-  user_id: 0,
   location_id: 1,
   category_id: 1,
   name: "",
@@ -11,32 +12,53 @@ const initialItem = {
   price: 0.0,
 };
 
-const EditDescription = () => {
+const EditDescription = ({ editItemDescription }) => {
   const [updatedItem, setUpdatedItem] = useState(initialItem);
+  const params = useParams();
+
+  console.log("ITEM ID", params)
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`/api/items/${params.id}`)
+      .then((response) => {
+        setUpdatedItem(response.data.data[0])
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [params.id]);
+
 
   const handleChanges = (event) => {
-    e.persist();
+    event.persist();
     let value = event.target.value;
     setUpdatedItem({
-      ...updatedItem,
-      [event.target.name]: value,
+      description: value,
     });
   };
 
-  const handleDescriptionSubmit = (e) => {
-    e.preventDefault();
-    props.add({ description: state.newCategory });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    editItemDescription(updatedItem, params.id);
+  
   };
+
+console.log("UPDATED ITEM", updatedItem)
 
   return (
     <div>
-      <h2>Update Description</h2>
-      <form onSubmit={handleDescriptionSubmit}>
+      <h1>Edit Description</h1>
+      <h3>Name: {updatedItem.name}</h3>
+      <p>Category: {updatedItem.catname}</p>
+      <h3>Description: {updatedItem.description}</h3>
+      <p>Price: {updatedItem.price}</p>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={state.description}
+          value={updatedItem.description}
           onChange={handleChanges}
-          placeholder={state.description}
+          placeholder={updatedItem.description}
         />
         <button>Update</button>
       </form>
@@ -50,6 +72,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { editItemDescription })(
-  EditDescription
-);
+export default connect(mapStateToProps, { editItemDescription })(EditDescription);
