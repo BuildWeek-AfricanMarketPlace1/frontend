@@ -32,7 +32,7 @@ const Dashboard = () => {
 				setLocations(response.data.data)
 			})
 			.catch((err) => console.log('error', err))
-	}, [])
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 	// console.log('loc', locations)
 	return (
 		<StyledDiv>
