@@ -36,6 +36,16 @@ const StyledCard = styled.div`
   }
 `;
 
+const StyledLink = styled.h4 `
+    color: #36443b;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+     &:hover {
+       color: #0567FB;
+     }
+`
+
 const StyledButton = styled.button`
   cursor: pointer;
   padding: 5px;
@@ -88,7 +98,7 @@ const InventoryList = ({ inventory, fetchInventory, deleteItem }) => {
     <StyledDiv>
       <StyledH1>Inventory List</StyledH1>
       <Link exact to="/add-products">
-        <p style={{paddingBottom: "20px"}}>Add Items</p>
+        <StyledLink style={{paddingBottom: "20px"}}>Add Items</StyledLink>
       </Link>
       {inventory.map((product) => (
         <StyledCard key={product.id}>
