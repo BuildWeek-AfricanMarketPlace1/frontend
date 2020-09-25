@@ -55,7 +55,7 @@ export default function reducer(state = initialState, action) {
     case ADD_CATEGORY:
       return {
         ...state,
-        categories: [...state.categories, action.payload],
+        categories: [...state.categories, ...action.payload],
       };
     default:
       return state;
