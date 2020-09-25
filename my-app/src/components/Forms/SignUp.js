@@ -40,6 +40,26 @@ const StyledDiv = styled.div`
 		font-size: 16px;
 		outline: none;
 	}
+
+	button {
+		cursor: pointer;
+		padding: 12px;
+		background: #999;
+		font-family: 'Roboto Slab', sans-serif;
+		font-size: 16px;
+		border: none;
+		outline: none;
+		color: white;
+		border-bottom: 2px solid #797979;
+
+		&:hover {
+			background-color: #a1a1a1;
+		}
+
+		&:active {
+			background-color: #888;
+		}
+	}
 `
 
 const intitialformvalues = {
@@ -56,7 +76,7 @@ const initialFormErrors = {
 }
 
 export default function RegistryForm(props) {
-	const [users, setUsers] = useState({})
+	// const [users, setUsers] = useState({})
 	//Commented out since it isn't being used
 
 	const [formValues, setFormValues] = useState(intitialformvalues)

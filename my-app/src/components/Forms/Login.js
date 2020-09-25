@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 //Commented our useRouteMatch from react-router-dom since it isn't being used
 import schema from './validate-login'
 import styled from 'styled-components'
@@ -16,8 +16,8 @@ const StyledDiv = styled.div`
 		font-family: 'Roboto Slab', sans-serif;
 		background: white;
 		color: #484848;
-    padding: 40px;
-    border: 1px solid red;
+		padding: 40px;
+		border: 1px solid red;
 	}
 	h2 {
 		text-align: center;
