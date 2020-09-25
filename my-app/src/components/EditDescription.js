@@ -142,6 +142,7 @@ const EditDescription = ({ editItemDescription }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editItemDescription(updatedItem, params.id);
+    history.push("/inventory");
   };
 
   console.log("UPDATED ITEM", updatedItem);
@@ -163,7 +164,7 @@ const EditDescription = ({ editItemDescription }) => {
           onChange={handleChanges}
           placeholder={updatedItem.description}
         />
-        <StyledButton onClick={() => history.push("/inventory")}>Update</StyledButton>
+        <StyledButton onClick={handleSubmit}>Update</StyledButton>
       </FormContainer>
       </FlexContainer>
     </StyledContainer>

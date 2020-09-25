@@ -20,14 +20,15 @@ const StyledDiv = styled.div`
 		text-decoration: none;
 		display: flex;
 		margin-top: 6%;
-		width: 100%;
+		width: 400px;
+		padding: 5px auto;
 	}
 
 	body {
 		font-family: 'Roboto Slab', sans-serif;
 		background: white;
 		color: #484848;
-		padding: 40px;
+		/* padding: 40px; */
 	}
 
 	input {
