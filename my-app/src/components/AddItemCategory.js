@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addCategory } from "../store/actions/actions";
+import { addCategory, deleteCategory } from "../store/actions/actions";
+import { Link } from "react-router-dom";
 
 const initialValue = {
   catname: "",
 };
 
-function AddItemCategory({ categories, addCategory }) {
+function AddItemCategory({ categories, addCategory, deleteCategory }) {
   const [newCategory, setNewCategory] = useState(initialValue);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    event.stopPropagation();
     addCategory(newCategory);
   };
 
   const handleChanges = (event) => {
+    event.preventDefault();
     setNewCategory({
       ...newCategory,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleDelete = (event, categoryId) => {
+    event.preventDefault();
+    deleteCategory(categoryId);
+    console.log(categoryId);
   };
 
   return (
@@ -43,9 +50,13 @@ function AddItemCategory({ categories, addCategory }) {
         return (
           <div key={category.id}>
             <p>{category.catname}</p>
+            <button onClick={(e) => handleDelete(e, category.id)}>Delete</button>
           </div>
         );
       })}
+              <Link exact to="/inventory">
+            <h4>Back to Inventory</h4>
+        </Link>
     </div>
   );
 }
@@ -56,4 +67,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addCategory })(AddItemCategory);
+export default connect(mapStateToProps, { addCategory, deleteCategory })(AddItemCategory);

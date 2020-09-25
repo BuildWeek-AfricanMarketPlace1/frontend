@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { editName } from "../store/actions/actions";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialItem = {
@@ -12,26 +12,25 @@ const initialItem = {
   price: 0.0,
 };
 
-const UpdateName = ({editName}) => {
+const UpdateName = ({ editName }) => {
   const [updatedItem, setUpdatedItem] = useState(initialItem);
   const params = useParams();
+  const history = useHistory();
 
   console.log("FUNCTION RUNNING", editName);
 
-  console.log("ITEM ID", params)
- 
+  console.log("ITEM ID", params);
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`/api/items/${params.id}`)
+      .get(`/api/items/${params.id}`)
       .then((response) => {
-        setUpdatedItem(response.data.data[0])
+        setUpdatedItem(response.data.data[0]);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [params.id]);
-
 
   const handleChanges = (event) => {
     event.persist();
@@ -44,18 +43,18 @@ const UpdateName = ({editName}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editName(updatedItem, params.id);
+    // history.push("/inventory");
   };
-
 
   console.log("ITEM", updatedItem);
 
   return (
     <div>
-      <h2>Updated name:{updatedItem.name}</h2>
+      <h1>Edit Name</h1>
+      <h3>Name: {updatedItem.name}</h3>
       <p>Category: {updatedItem.catname}</p>
       <h3>Description: {updatedItem.description}</h3>
       <p>Price: {updatedItem.price}</p>
-      <p>Edit Name</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -63,7 +62,7 @@ const UpdateName = ({editName}) => {
           onChange={handleChanges}
           placeholder={updatedItem.name}
         />
-        <button>Update</button>
+        <button onClick={() => history.push("/inventory")}>Update</button>
       </form>
     </div>
   );

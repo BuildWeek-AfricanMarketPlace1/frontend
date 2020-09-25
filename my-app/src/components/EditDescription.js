@@ -48,9 +48,11 @@ console.log("UPDATED ITEM", updatedItem)
 
   return (
     <div>
-      <h2>{updatedItem.name}</h2>
-      <h3>{updatedItem.description}</h3>
-      <p>Edit Description</p>
+      <h1>Edit Description</h1>
+      <h3>Name: {updatedItem.name}</h3>
+      <p>Category: {updatedItem.catname}</p>
+      <h3>Description: {updatedItem.description}</h3>
+      <p>Price: {updatedItem.price}</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

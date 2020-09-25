@@ -7,5 +7,5 @@ export {
   DELETE_ITEM,
   FETCH_CATEGORIES,
   FETCH_ITEM,
+  DELETE_CATEGORY,
 } from "./actions";
-

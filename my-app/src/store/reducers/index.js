@@ -6,6 +6,7 @@ import {
   ADD_CATEGORY,
   FETCH_INVENTORY,
   ADD_ITEM,
+  DELETE_CATEGORY,
 } from "../actions";
 
 const initialState = {
@@ -50,6 +51,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         inventory: state.inventory.filter(item => item.id !== action.payload),
       };
+      case DELETE_CATEGORY:
+        return {
+          ...state,
+          categories: state.categories.filter(category => category.id !== action.payload),
+        };
     case FETCH_CATEGORIES:
       return {
         ...state,

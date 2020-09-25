@@ -7,6 +7,7 @@ export const EDIT_DESCRIPTION = "EDIT_DESCRIPTION";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const FETCH_ITEM = "FETCH_ITEM";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 //Get Entire Inventory List
 export const fetchInventory = () => {
   return (dispatch) => {
@@ -102,6 +103,20 @@ export const deleteItem = (productId) => {
       .then((response) => {
         console.log(response);
         dispatch({ type: DELETE_ITEM, payload: productId });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const deleteCategory = (categoryId) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .delete(`/api/categories/${categoryId}`)
+      .then((response) => {
+        console.log(response);
+        dispatch({ type: DELETE_CATEGORY, payload: categoryId });
       })
       .catch((err) => {
         console.log(err);
