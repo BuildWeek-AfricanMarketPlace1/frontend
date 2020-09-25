@@ -12,15 +12,6 @@ import {
 const initialState = {
   categories: [],
   inventory: [
-    {
-      id: 0,
-      user_id: 0,
-      location_id: 1,
-      category_id: 1,
-      name: "",
-      description: "",
-      price: 0.0,
-    },
   ],
 };
 
@@ -44,7 +35,7 @@ export default function reducer(state = initialState, action) {
     case ADD_ITEM:
       return {
         ...state,
-        inventory: [...state.inventory, action.payload],
+        inventory: [...state.inventory, ...action.payload],
       };
     case DELETE_ITEM:
       return {

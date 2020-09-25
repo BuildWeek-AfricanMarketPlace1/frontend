@@ -2,6 +2,19 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addCategory, deleteCategory } from "../store/actions/actions";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledContainer = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  font-family: "Roboto Slab", sans-serif;
+`
+
+const StyledH1 = styled.h1 `
+
+`
 
 const initialValue = {
   catname: "",
@@ -30,8 +43,8 @@ function AddItemCategory({ categories, addCategory, deleteCategory }) {
   };
 
   return (
-    <div>
-      <h2>Add a New Category</h2>
+    <StyledContainer>
+      <StyledH1>Add a New Category</StyledH1>
       <form onSubmit={handleSubmit}>
         <br></br>
         <label>
@@ -57,7 +70,7 @@ function AddItemCategory({ categories, addCategory, deleteCategory }) {
               <Link exact to="/inventory">
             <h4>Back to Inventory</h4>
         </Link>
-    </div>
+    </StyledContainer>
   );
 }
 

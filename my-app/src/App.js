@@ -5,7 +5,7 @@ import "./App.css";
 
 import Login from "./components/Forms/Login.js";
 import SignUp from "./components/Forms/SignUp.js";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import InventoryList from "./components/InventoryList";
 import AddProduct from "./components/AddProduct";
 import UpdateName from "./components/UpdateName";

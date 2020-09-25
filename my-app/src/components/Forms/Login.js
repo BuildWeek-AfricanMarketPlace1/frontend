@@ -16,7 +16,8 @@ const StyledDiv = styled.div`
 		font-family: 'Roboto Slab', sans-serif;
 		background: white;
 		color: #484848;
-		padding: 40px;
+    padding: 40px;
+    border: 1px solid red;
 	}
 	h2 {
 		text-align: center;
