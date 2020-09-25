@@ -42,7 +42,7 @@ function Navbar() {
 					<NavbarContainer>
 						<NavLogo to="/" onClick={closeMobileMenu}>
 							<NavIcon />
-							AFRICAN MARKET
+							Sauti.
 						</NavLogo>
 						<MobileIcon onClick={handleClick}>
 							{click ? <FaTimes /> : <FaBars />}

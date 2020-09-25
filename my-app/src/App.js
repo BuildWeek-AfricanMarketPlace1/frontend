@@ -1,7 +1,6 @@
-
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useParams, Switch } from "react-router-dom";
 import "./App.css";
 
 import Login from "./components/Forms/Login.js";
@@ -14,31 +13,31 @@ import PrivateRoute from "./components/PrivateRoute";
 import AddItemCategory from "./components/AddItemCategory";
 import EditDescription from "./components/EditDescription";
 import { fetchItemCategories } from "./store/actions/actions";
-import Navbar from './components/Nav/Navbar'
-import GlobalStyle from './globalStyles.js';
+import { Navbar, Footer } from './components'
+
+import GlobalStyle from './globalStyles.js'
+import Home from './pages/HomePage/Home'
+import ScrollToTop from './components/ScrollToTop'
+
 
 function App({ fetchItemCategories }) {
   useEffect(() => {
     fetchItemCategories();
   }, [fetchItemCategories]);
 
+
   const params = useParams();
 
   return (
-    <div className="App">
-			<Router>
-				<GlobalStyle />
-			</Router>
+		<Router>
+			<GlobalStyle />
+			<ScrollToTop />
 			<Navbar />
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <PrivateRoute exact path="/dashboard">
-        <Dashboard />
-      </PrivateRoute>
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<PrivateRoute exact path="/dashboard">
+					<Dashboard />
+				</PrivateRoute>
       <PrivateRoute exact path="/inventory">
         <InventoryList />
       </PrivateRoute>
@@ -54,13 +53,18 @@ function App({ fetchItemCategories }) {
       <PrivateRoute exact path="/description-editor/:id">
         <EditDescription />
       </PrivateRoute>
-    </div>
+  				<Route path="/login" component={Login} />
+				<Route path="/signup" component={SignUp} />
+			</Switch>
+			<Footer />
+		</Router>
   );
-}
 
+}
 function mapStateToProps(state) {
   return {};
 }
 
 export default connect(mapStateToProps, { fetchItemCategories })(App);
+
 
