@@ -144,7 +144,7 @@ const UpdateName = ({ editName }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     editName(updatedItem, params.id);
-    // history.push("/inventory");
+    history.push("/inventory");
   };
 
   console.log("ITEM", updatedItem);
@@ -166,7 +166,7 @@ const UpdateName = ({ editName }) => {
           onChange={handleChanges}
           placeholder={updatedItem.name}
         />
-        <StyledButton onClick={() => history.push("/inventory")}>Update</StyledButton>
+        <StyledButton onClick={handleSubmit}>Update</StyledButton>
       </FormContainer>
       </FlexContainer>
     </StyledContainer>
