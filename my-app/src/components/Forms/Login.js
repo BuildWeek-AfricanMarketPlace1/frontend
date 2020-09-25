@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 //Commented our useRouteMatch from react-router-dom since it isn't being used
 import schema from './validate-login'
 import styled from 'styled-components'
+import './Login.css'
 
 const StyledDiv = styled.div`
 	display: flex;
@@ -13,15 +14,10 @@ const StyledDiv = styled.div`
 	font-family: 'Roboto Slab', sans-serif;
 
 	body {
-		font-family: 'Roboto Slab', sans-serif;
 		background: white;
 		color: #484848;
 		padding: 40px;
 		border: 1px solid red;
-	}
-	h2 {
-		text-align: center;
-		padding: 0px;
 	}
 
 	input {
@@ -142,7 +138,7 @@ const Login = () => {
 		<StyledDiv>
 			<div id="loginform">
 				<form onSubmit={onSubmit}>
-					<label htmlFor="username">Username:</label>
+					<h2>Login</h2>
 					<input
 						name="email"
 						type="text"

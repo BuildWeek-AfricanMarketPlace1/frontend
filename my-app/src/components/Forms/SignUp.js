@@ -1,4 +1,3 @@
-import './Login.css'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
@@ -15,12 +14,16 @@ const StyledDiv = styled.div`
 	text-decoration: none;
 	font-family: 'Roboto Slab', sans-serif;
 
+	form {
+		width: 100%;
+	}
+
 	p {
-		color: red;
+		border: none;
+		color: grey;
 		text-decoration: none;
 		display: flex;
 		margin-top: 6%;
-		width: 100%;
 	}
 
 	body {
@@ -156,7 +159,7 @@ export default function RegistryForm(props) {
 			<div id="signup">
 				<form className="registryform" onSubmit={Submit}>
 					<div className="inputs">
-						<label class="register">Register:{<br></br>}</label>
+						<h2 class="register">Register:{<br></br>}</h2>
 						<label>
 							Email:{<br></br>}
 							<input
@@ -180,7 +183,9 @@ export default function RegistryForm(props) {
 
 						<label>
 							{' '}
-							<p>I agree to the Terms and conditions</p>
+							<div className="test">
+								<p>I agree to the Terms and conditions</p>
+							</div>
 							<input
 								type="checkbox"
 								name="terms"
